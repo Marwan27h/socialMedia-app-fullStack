@@ -1,0 +1,146 @@
+@import "../../style.scss";
+
+.login {
+    height: 100vh;
+    background-color: rgb(51, 44, 44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card {
+        background: linear-gradient(
+                rgba(39, 11, 96, 0.5),
+                rgba(39, 11, 96, 0.5)
+            ),
+            url("https://images.pexels.com/photos/4901990/pexels-photo-4901990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+                center;
+        background-size: cover;
+        width: 70%;
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        min-height: 600px;
+        overflow: hidden;
+
+        @include mobile {
+            width: 100%;
+        }
+
+        .left {
+            flex: 1;
+            background: linear-gradient(
+                rgba(61, 60, 63, 0.5),
+                rgba(39, 11, 96, 0.5)
+            );
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            color: lightgray;
+            box-shadow: 0 0 10px rgba(1, 20, 0, 0.2);
+
+            @include mobile {
+                padding: 10px 5px;
+            }
+            h1 {
+                font-size: 80px;
+                line-height: 60px;
+
+                @include mobile {
+                    font-size: 40px;
+                    line-height: 55px;
+                }
+            }
+
+            p {
+                font-weight: 500;
+
+                @include mobile {
+                    font-weight: 400;
+                    font-size: 12px;
+                }
+            }
+
+            span {
+                font-size: 14px;
+            }
+
+            button {
+                width: 70%;
+                padding: 7px 6px;
+                border: none;
+                color: white;
+                border-radius: 4px;
+                background-color: #938eef;
+                font-weight: bold;
+                cursor: pointer;
+
+                @include mobile {
+                    width: 30%;
+                    padding: 3px 4px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .right {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            color: lightgray;
+
+            @include mobile {
+                padding: 10px 5px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                background-color: inherit;
+                   @include mobile {
+                     gap: 20px;
+                    }
+
+                input {
+                    color: white;
+                    font-weight: bold;
+                    border: none;
+                    background-color: inherit;
+                    border-bottom: 1px solid lightgray;
+                    padding: 8px 4px;
+                    border-radius: 5px;
+
+                    @include mobile {
+                        padding: 6px 5px;
+                        font-size: 10px;
+                        width: 70%;
+                    }
+                }
+
+                button {
+                    width: 60%;
+                    padding: 7px 6px;
+                    border: none;
+                    background-color: #938eef;
+                    border-radius: 4px;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                    @include mobile {
+                        width: 30%;
+                        padding: 3px 4px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
