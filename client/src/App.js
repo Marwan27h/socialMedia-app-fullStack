@@ -26,7 +26,7 @@ function App() {
     const { darkMode } = useContext(DarkModeContext)
 
     const queryClient = new QueryClient()
-const Layout = ({ children }) => {
+const Layout = () => {
     const location = useLocation();
     
     return (
@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
         element: (
             <ProtectedRoute>
                 <Layout>
-                    <ShareEvent /> {/* Add the component for sharing events */}
+                    <ShareEvent /> 
                 </Layout>
             </ProtectedRoute>
         ),

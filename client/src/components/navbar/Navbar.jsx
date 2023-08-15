@@ -89,7 +89,7 @@ const Navbar = () => {
             }
         },
         {
-            refetchInterval: 60000, // Fetch notifications every 60 seconds
+            refetchInterval: 60000, 
         }
     )
 
@@ -101,7 +101,7 @@ const Navbar = () => {
 
     const handleNotificationsClick = async () => {
         try {
-            // Manually trigger the refetch to update notifications when clicked
+        
             await refetchNotifications()
             setShowNotificationsDropdown((prevState) => !prevState)
         } catch (error) {
@@ -147,8 +147,8 @@ const Navbar = () => {
                     error={error}
                     data={data}
                     searchContainerRef={searchContainerRef}
-                    inputRef={inputRef} // Pass the inputRef
-                    userFoundRef={userFoundRef} // Pass the userFoundRef
+                    inputRef={inputRef} 
+                    userFoundRef={userFoundRef} 
                 />
             </div>
 

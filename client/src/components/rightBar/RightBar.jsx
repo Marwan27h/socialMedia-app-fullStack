@@ -25,10 +25,11 @@ const RightBar = () => {
         isLoading: isLoadingFriends,
         data: friendsData,
         refetch: refetchFriends,
-    } = useQuery(["friends"], () =>
-        makeRequest.get("/friends").then((res) => res.data),
-         {
-            refetchInterval: 30000, // Fetch online friends every 30 seconds
+    } = useQuery(
+        ["friends"],
+        () => makeRequest.get("/friends").then((res) => res.data),
+        {
+            refetchInterval: 30000,
         }
     )
 
@@ -36,28 +37,26 @@ const RightBar = () => {
         isLoading: isLoadingSuggestions,
         data: suggestionsData,
         refetch: refetchSuggestions,
-    } = useQuery(["suggestions"], () =>
-        makeRequest.get("/suggestions").then((res) => res.data),
+    } = useQuery(
+        ["suggestions"],
+        () => makeRequest.get("/suggestions").then((res) => res.data),
         {
-            refetchInterval: 30000, // Fetch online friends every 30 seconds
+            refetchInterval: 30000,
         }
     )
 
-      const {
-          isLoading: isLoadingLatestActivities,
-          data: latestActivitiesData,
-          refetch: refetchLatestActivities,
-      } = useQuery(
-          ["latestActivities"],
-          () =>
-              makeRequest
-                  .get("/users/latestActivities")
-                  .then((res) => res.data),
-          {
-              refetchInterval: 60000, // Fetch latest activities every 60 seconds
-          }
-      )
-
+    const {
+        isLoading: isLoadingLatestActivities,
+        data: latestActivitiesData,
+        refetch: refetchLatestActivities,
+    } = useQuery(
+        ["latestActivities"],
+        () =>
+            makeRequest.get("/users/latestActivities").then((res) => res.data),
+        {
+            refetchInterval: 60000,
+        }
+    )
 
     const followMutation = useMutation(
         (userId) => makeRequest.post("/relationships", { userId }),
@@ -68,7 +67,6 @@ const RightBar = () => {
                     (user) => user.userId === userId
                 )
                 if (newFriend) {
-                    // Remove the new friend from suggestions immediately
                     queryClient.setQueryData(["suggestions"], (oldData) =>
                         oldData.filter(
                             (user) => user.userId !== newFriend.userId
@@ -77,7 +75,6 @@ const RightBar = () => {
                 }
             },
             onSuccess: (data, userId) => {
-                // Add the new friend to friendsData immediately
                 queryClient.setQueryData(["friends"], (oldData) => [
                     ...oldData,
                     data,
@@ -107,7 +104,6 @@ const RightBar = () => {
     const handleFollow = (userId) => {
         followMutation.mutate(userId, {
             onSuccess: () => {
-                // After the mutation is successful, refetch the friends and suggestions data
                 refetchFriends()
                 refetchSuggestions()
                 refetchLatestActivities()

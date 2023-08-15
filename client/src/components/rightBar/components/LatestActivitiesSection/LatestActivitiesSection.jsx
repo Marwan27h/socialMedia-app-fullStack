@@ -21,7 +21,7 @@ const LatestActivitiesSection = ({
             case "like":
                 text = "liked a post"
                 break
-            // Add more cases for other activity types if needed
+
             default:
                 break
         }

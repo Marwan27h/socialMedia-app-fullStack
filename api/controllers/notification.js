@@ -1,5 +1,5 @@
 import { db } from "../connect.js"
-import jwt from "jsonwebtoken"
+
 
 export const getNotificationsLikesComments = (req, res) => {
     const q = `

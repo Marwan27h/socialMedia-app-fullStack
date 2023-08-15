@@ -18,11 +18,9 @@ export const getPosts = (req, res) => {
         const values = []
 
         if (userId && userId !== "undefined") {
-            // Fetch posts of the specified user
             q += " WHERE p.userId = ?"
             values.push(userId)
         } else {
-            // Fetch posts from the users you follow
             q += `
                 LEFT JOIN relationships AS r ON (r.followedUserId = p.userId AND r.followerUserId = ?)
                 WHERE p.userId = ? OR r.followerUserId = ?
@@ -39,7 +37,6 @@ export const getPosts = (req, res) => {
     })
 }
 
-
 export const deletePost = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not logged in!")
@@ -50,12 +47,10 @@ export const deletePost = (req, res) => {
         const postId = req.params.id
         const userId = userInfo.id
 
-        // Step 1: Delete the comments associated with the post
         const deleteCommentsQuery = "DELETE FROM comments WHERE postId = ?"
         db.query(deleteCommentsQuery, [postId], (err, commentsData) => {
             if (err) return res.status(500).json(err)
 
-            // Step 2: Delete the post
             const deletePostQuery =
                 "DELETE FROM posts WHERE id = ? AND userId = ?"
             db.query(deletePostQuery, [postId, userId], (err, postData) => {
@@ -85,7 +80,7 @@ export const addPost = (req, res) => {
             req.body.img,
             moment().format("YYYY-MM-DD HH:mm:ss"),
             req.body.place,
-            req.body.friendId, // Assuming you pass the `friendId` in the request body
+            req.body.friendId,
             userInfo.id,
         ]
 
@@ -128,7 +123,6 @@ export const sharePost = (req, res) => {
                 .json("PostId is missing in the query parameters.")
         }
 
-        // Step 1: Retrieve the post data to be shared from the followed user's post
         const selectQuery = `
             SELECT p.*, u.name as userName
             FROM posts AS p
@@ -144,11 +138,9 @@ export const sharePost = (req, res) => {
                     .json("Post not found for the followed user.")
             }
 
-            // Step 2: Create a new post on the current user's profile using the retrieved post data
             const post = result[0]
 
-            // Include the username of the user who posted the original post in the description
-             const sharedPostDesc = `Shared from ${post.userName}:\n${post.desc}`
+            const sharedPostDesc = `Shared from ${post.userName}:\n${post.desc}`
 
             const insertQuery =
                 "INSERT INTO posts (`desc`, img, createdAt, place, userId) VALUES (?, ?, ?, ?, ?)"
@@ -188,7 +180,6 @@ export const getUserImages = (req, res) => {
         db.query(q, values, (err, data) => {
             if (err) return res.status(500).json(err)
 
-            // Check if the data array is empty.
             if (data.length === 0) {
                 return res.status(404).json("No images found for this user.")
             }

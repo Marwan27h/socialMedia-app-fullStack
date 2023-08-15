@@ -18,7 +18,7 @@ export const getUser = (req, res) => {
 }
 
 export const getUserByName = (req, res) => {
-    const name = req.query.name // Use req.query instead of req.params
+    const name = req.query.name
     const q = "SELECT u.username, u.id FROM users as u WHERE name LIKE ?"
 
     db.query(q, [`%${name}%`], (err, data) => {
@@ -69,30 +69,21 @@ export const updateUser = (req, res) => {
     })
 }
 
-
 export const deleteUser = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not authenticated")
     jwt.verify(token, "secretkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid")
 
-        const q =
-            "DELETE FROM users WHERE id=?"
+        const q = "DELETE FROM users WHERE id=?"
 
-        db.query(
-            q,
-            [
-              
-                userInfo.id,
-            ],
-            (err, result) => {
-                if (err) {
-                    console.error(err)
-                    return res.status(500).json(err)
-                }
-                if (result.affectedRows > 0) return res.json("deleted!")
-                return res.status(403).json("You can delete only your account")
+        db.query(q, [userInfo.id], (err, result) => {
+            if (err) {
+                console.error(err)
+                return res.status(500).json(err)
             }
-        )
+            if (result.affectedRows > 0) return res.json("deleted!")
+            return res.status(403).json("You can delete only your account")
+        })
     })
 }

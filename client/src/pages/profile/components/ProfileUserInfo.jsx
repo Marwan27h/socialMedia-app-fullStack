@@ -10,7 +10,7 @@ import EngineeringIcon from "@mui/icons-material/Engineering"
 import WorkIcon from "@mui/icons-material/Work"
 import Diversity1SharpIcon from "@mui/icons-material/Diversity1Sharp"
 import SnowboardingIcon from "@mui/icons-material/Snowboarding"
-import PublicIcon from '@mui/icons-material/Public';
+import PublicIcon from "@mui/icons-material/Public"
 
 const ProfileUserInfo = ({
     data,
@@ -32,8 +32,6 @@ const ProfileUserInfo = ({
     followedCount,
     followedCountLoading,
 }) => {
-
-  
     return (
         <div className="uInfo">
             <div className="left">

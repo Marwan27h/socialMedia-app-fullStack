@@ -25,16 +25,15 @@ test("renders online friends section", () => {
         </BrowserRouter>
     )
 
-    const onlineFriendsHeader = screen.getByText("Online Friends") // Use screen.getByText here
+    const onlineFriendsHeader = screen.getByText("Online Friends")
     expect(onlineFriendsHeader).toBeInTheDocument()
 
-    const friend1Name = screen.getByText("Virgin Van Gaal") // Use screen.getByText here
+    const friend1Name = screen.getByText("Virgin Van Gaal")
     expect(friend1Name).toBeInTheDocument()
 
-    const friend2Name = screen.getByText("Nour Homsi") // Use screen.getByText here
+    const friend2Name = screen.getByText("Nour Homsi")
     expect(friend2Name).toBeInTheDocument()
 
-    // Since the images are not text content, you can use getByRole("img") and provide the alt attribute.
     const friend1Image = screen.getByRole("img", { name: "Virgin Van Gaal" })
     expect(friend1Image).toBeInTheDocument()
 

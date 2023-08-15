@@ -46,7 +46,6 @@ export const deleteComment = (req, res) => {
     jwt.verify(token, "secretkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
-
         const q = "DELETE FROM comments WHERE id = ? AND userId = ?"
 
         db.query(q, [req.params.id, userInfo.id], (err, result) => {
@@ -59,27 +58,25 @@ export const deleteComment = (req, res) => {
     })
 }
 
-
 export const updateComment = (req, res) => {
-  const token = req.cookies.accessToken;
-  if (!token) return res.status(401).json("Not logged in!");
+    const token = req.cookies.accessToken
+    if (!token) return res.status(401).json("Not logged in!")
 
-  jwt.verify(token, "secretkey", (err, userInfo) => {
-    if (err) return res.status(403).json("Token is not valid!");
+    jwt.verify(token, "secretkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!")
 
-    const commentId = req.params.id;
-    const userId = userInfo.id;
-    const updatedDesc = req.body.desc; // Updated description from the request body
+        const commentId = req.params.id
+        const userId = userInfo.id
+        const updatedDesc = req.body.desc
 
-   const q = "UPDATE comments SET `desc` = ? WHERE id = ? AND userId = ?"
+        const q = "UPDATE comments SET `desc` = ? WHERE id = ? AND userId = ?"
 
-
-    db.query(q, [updatedDesc, commentId, userId], (err, result) => {
-      if (err) return res.status(500).json(err);
-      if (result.affectedRows === 0) {
-        return res.status(404).json("Comment not found or unauthorized");
-      }
-      return res.status(200).json("Comment updated successfully");
-    });
-  });
-};
+        db.query(q, [updatedDesc, commentId, userId], (err, result) => {
+            if (err) return res.status(500).json(err)
+            if (result.affectedRows === 0) {
+                return res.status(404).json("Comment not found or unauthorized")
+            }
+            return res.status(200).json("Comment updated successfully")
+        })
+    })
+}

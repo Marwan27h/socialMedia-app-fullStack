@@ -10,14 +10,12 @@ import Update from "../../components/update/Update"
 import Share from "../../components/share/Share"
 import Posts from "../../components/posts/Posts"
 
-
 const Profile = () => {
     const [openUpdate, setOpenUpdate] = useState(false)
- const [followingCount, setFollowingCount] = useState(0)
- const [followedCount, setFollowedCount] = useState(0)
- const [followingCountIsLoading, setFollowingCountIsLoading] = useState(true)
- const [followedCountIsLoading, setFollowedCountIsLoading] = useState(true)
-
+    const [followingCount, setFollowingCount] = useState(0)
+    const [followedCount, setFollowedCount] = useState(0)
+    const [followingCountIsLoading, setFollowingCountIsLoading] = useState(true)
+    const [followedCountIsLoading, setFollowedCountIsLoading] = useState(true)
 
     const { currentUser } = useContext(AuthContext)
 
@@ -25,23 +23,20 @@ const Profile = () => {
 
     const queryClient = useQueryClient()
 
- 
     const clearCachedUserData = useCallback(() => {
         queryClient.removeQueries(["user"])
         queryClient.removeQueries(["relationship"])
-        // Add more queries if needed
     }, [queryClient])
 
     useEffect(() => {
         clearCachedUserData()
-    }, [userId, clearCachedUserData]) 
+    }, [userId, clearCachedUserData])
 
     const { isLoading, data } = useQuery(["user"], () =>
         makeRequest.get("/users/find/" + userId).then((res) => {
             return res.data
         })
     )
-  
 
     const { isLoading: rIsLoading, data: relationshipData } = useQuery(
         ["relationship"],
@@ -93,8 +88,6 @@ const Profile = () => {
         setImages([])
     }
 
-
-
     const fetchFollowingCount = useCallback(async () => {
         try {
             const response = await makeRequest.get(
@@ -129,8 +122,6 @@ const Profile = () => {
 
         fetchCounts()
     }, [fetchFollowingCount, fetchFollowedCount])
-
-
 
     return (
         <div className="profile">

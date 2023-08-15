@@ -8,7 +8,7 @@ export const latestActivities = (req, res) => {
     jwt.verify(token, "secretkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid")
 
-        const userId = userInfo.id // Get the current user's ID from the decoded token
+        const userId = userInfo.id
 
         const q = `
   SELECT

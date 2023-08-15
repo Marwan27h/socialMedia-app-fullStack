@@ -13,7 +13,7 @@ const ContactUs = () => {
     })
     const [successMessage, setSuccessMessage] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
-    const [formIncomplete, setFormIncomplete] = useState(false) // New state
+    const [formIncomplete, setFormIncomplete] = useState(false) 
 
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -23,7 +23,7 @@ const ContactUs = () => {
         e.preventDefault()
 
         if (!isFormValid()) {
-            setFormIncomplete(true) // Set form incomplete state and return early
+            setFormIncomplete(true) 
             return
         }
 
@@ -31,7 +31,7 @@ const ContactUs = () => {
             await axios.post("http://localhost:3006/api/contact", inputs)
             setSuccessMessage("Your message has been sent successfully.")
             setErrorMessage("")
-            setFormIncomplete(false) // Reset form incomplete state
+            setFormIncomplete(false)
             setInputs({
                 username: "",
                 email: "",
@@ -39,10 +39,10 @@ const ContactUs = () => {
                 message: "",
             })
 
-            // Set timeout to clear the success message
+           
             setTimeout(() => {
                 setSuccessMessage("")
-            }, 3000) // Display success message for 3 seconds
+            }, 3000) 
         } catch (err) {
             setSuccessMessage("")
             setErrorMessage("Failed to send message. Please try again later.")
@@ -111,7 +111,7 @@ const ContactUs = () => {
                         {errorMessage && (
                             <div className="error">{errorMessage}</div>
                         )}
-                        {formIncomplete && ( // Display form incomplete message
+                        {formIncomplete && ( 
                             <div className="error">
                                 Please fill out all fields.
                             </div>
