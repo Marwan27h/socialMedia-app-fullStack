@@ -4,7 +4,7 @@ import Map from "../../assets/map.png"
 import Friend from "../../assets/friend.png"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../context/authContext"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { makeRequest } from "../../axios"
 import noPersonImage from "../../assets/noPersonImage.png"
 
@@ -79,6 +79,21 @@ const Share = () => {
         setIsButtonDisabled(!file && !desc && !place && !selectedFriend)
     }, [file, desc, place, selectedFriend])
 
+    const { data: updatedCurrentUser } = useQuery(
+        ["user", currentUser.id],
+        async () => {
+            const response = await makeRequest.get(
+                `/users/find/${currentUser.id}`
+            )
+            return response.data
+        },
+        {
+            cacheTime: 60000,
+            refetchInterval: 30000,
+        }
+    )
+
+
     return (
         <div className="share">
             <div className="container">
@@ -86,15 +101,19 @@ const Share = () => {
                     <div className="left">
                         <img
                             src={
-                                currentUser.profilePic
-                                    ? "/upload/" + currentUser.profilePic
+                                updatedCurrentUser?.profilePic
+                                    ? `/upload/${
+                                          updatedCurrentUser.profilePic
+                                      }?${Date.now()}`
                                     : noPersonImage
                             }
                             alt=""
                         />
                         <input
                             type="text"
-                            placeholder={`What's on your mind, ${currentUser.name}?`}
+                            placeholder={`What's on your mind, ${
+                                updatedCurrentUser?.name || ""
+                            }?`}
                             onChange={(e) => setDesc(e.target.value)}
                             value={desc}
                         />

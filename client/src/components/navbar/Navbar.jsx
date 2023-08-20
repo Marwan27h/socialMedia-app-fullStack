@@ -60,7 +60,7 @@ const Navbar = () => {
                 withCredentials: true,
             })
 
-            login(null)
+            login()
 
             localStorage.removeItem("user")
             navigate("/login", { replace: true })

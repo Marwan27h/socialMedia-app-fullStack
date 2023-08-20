@@ -94,13 +94,29 @@ const Stories = () => {
         }
     }, [isLoading, data])
 
+    const { data: updatedCurrentUser } = useQuery(
+        ["user", currentUser.id],
+        async () => {
+            const response = await makeRequest.get(
+                `/users/find/${currentUser.id}`
+            )
+            return response.data
+        },
+        {
+            cacheTime: 60000,
+            refetchInterval: 30000,
+        }
+    )
+
     return (
         <div className="stories">
             <div className="story">
                 <img
                     src={
-                        currentUser.profilePic
-                            ? "./upload/" + currentUser.profilePic
+                        updatedCurrentUser?.profilePic
+                            ? `/upload/${
+                                  updatedCurrentUser.profilePic
+                              }?${Date.now()}`
                             : noPersonImage
                     }
                     alt=""
@@ -131,7 +147,10 @@ const Stories = () => {
                                     color: "inherit",
                                 }}
                             >
-                                <span>{currentUser.name}</span>
+                                <span>
+                                    {updatedCurrentUser?.name ||
+                                        currentUser.name}
+                                </span>
                             </Link>
                         </div>
                     </label>
