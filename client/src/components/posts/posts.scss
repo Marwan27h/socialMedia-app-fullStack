@@ -12,7 +12,8 @@
    
 
     .loading-container,
-        .no-posts-container {
+        .no-posts-container
+        {
             padding: 20px 60px;
             background-color: themed("bgSoft");
             display: flex;

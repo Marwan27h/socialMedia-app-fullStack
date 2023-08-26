@@ -10,8 +10,8 @@ const OnlineFriendsSection = ({ friendsData }) => {
             {friendsData.length === 0 ? (
                 <p>No friends online available.</p>
             ) : (
-                friendsData.map((friend) => (
-                    <div className="user" key={friend.userId}>
+                friendsData.map((friend, index) => (
+                    <div className="user" key={index}>
                         <div className="userInfo">
                             <img
                                 src={

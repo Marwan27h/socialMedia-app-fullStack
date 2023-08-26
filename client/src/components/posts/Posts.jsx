@@ -50,6 +50,7 @@ const Posts = ({ userId }) => {
       )
   }
 
+
         return data.map((post) => (
             <MemoizedPost
                 post={post}
