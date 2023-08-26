@@ -1,6 +1,6 @@
 import "./shareEvent.scss"
 import Image from "../../../assets/img.png"
-import { useContext, useState } from "react"
+import { React, useContext, useState } from "react"
 import { AuthContext } from "../../../context/authContext"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import noPersonImage from "../../../assets/noPersonImage.png"

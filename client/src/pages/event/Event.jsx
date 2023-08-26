@@ -1,3 +1,4 @@
+import React from "react"
 import Stories from "../../components/stories/Stories"
 import PostsEvent from "./postsEvent/PostsEvent"
 import ShareEvent from "./shareEvent/ShareEvent"

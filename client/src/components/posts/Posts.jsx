@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { React, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { debounce } from "lodash";

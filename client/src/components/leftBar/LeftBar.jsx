@@ -1,4 +1,5 @@
 import "./leftBar.scss"
+import React from 'react';
 import { useNavigate } from "react-router-dom"
 import Friends from "../../assets/1.png"
 import Groups from "../../assets/2.png"
