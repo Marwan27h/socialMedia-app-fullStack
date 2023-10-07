@@ -1,4 +1,5 @@
 import "./postsEvent.scss"
+import React from "react"
 import moment from "moment"
 import { useQuery } from "@tanstack/react-query"
 import { makeRequest } from "../../../axios"
