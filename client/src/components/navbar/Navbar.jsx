@@ -11,7 +11,7 @@ import User from "./components/User"
 
 const Navbar = () => {
     const { toggle, darkMode } = useContext(DarkModeContext)
-    const { currentUser, login } = useContext(AuthContext)
+    const { currentUser, logout } = useContext(AuthContext)
     const [searchQuery, setSearchQuery] = useState("")
     const searchContainerRef = useRef(null)
     const userFoundRef = useRef(null)
@@ -53,21 +53,6 @@ const Navbar = () => {
         }, 0)
     }, [userFoundRef, setData])
 
-    const handleLogout = async () => {
-        try {
-            await makeRequest.post("auth/logout", null, {
-                withCredentials: true,
-            })
-
-            login()
-
-            localStorage.removeItem("user")
-            navigate("/login", { replace: true })
-        } catch (error) {
-            console.error("Failed to logout:", error)
-        }
-    }
-
     const getFirstName = (fullName) => {
         if (fullName) {
             const parts = fullName.split(" ")
@@ -88,7 +73,7 @@ const Navbar = () => {
             }
         },
         {
-            refetchInterval: 60000, 
+            refetchInterval: 60000,
         }
     )
 
@@ -100,7 +85,6 @@ const Navbar = () => {
 
     const handleNotificationsClick = async () => {
         try {
-        
             await refetchNotifications()
             setShowNotificationsDropdown((prevState) => !prevState)
         } catch (error) {
@@ -113,16 +97,17 @@ const Navbar = () => {
             const response = await makeRequest.delete(
                 `/users?id=${currentUser.id}`
             )
+            console.log("hi")
 
-            if (response.status === 204) {
+            if (response.status === 200) {
                 console.log(
                     "Account deleted successfully. Navigating to login..."
                 )
-            } else {
-                console.error("Account deletion failed.")
-            }
+                localStorage.removeItem("userData")
+                navigate("/login")
+            } 
         } catch (error) {
-            console.error("Error deleting account:", error)
+            throw error
         }
     }
 
@@ -146,14 +131,14 @@ const Navbar = () => {
                     error={error}
                     data={data}
                     searchContainerRef={searchContainerRef}
-                    inputRef={inputRef} 
-                    userFoundRef={userFoundRef} 
+                    inputRef={inputRef}
+                    userFoundRef={userFoundRef}
                 />
             </div>
 
             <User
                 currentUser={currentUser}
-                handleLogout={handleLogout}
+                logout={logout}
                 getFirstName={getFirstName}
                 setShowDeleteConfirmation={setShowDeleteConfirmation}
                 showDeleteConfirmation={showDeleteConfirmation}

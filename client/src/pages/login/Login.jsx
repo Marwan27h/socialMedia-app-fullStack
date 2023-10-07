@@ -9,26 +9,28 @@ const Login = () => {
         password: "",
     })
 
-    const [err, setErr] = useState(null)
-
     const navigate = useNavigate()
 
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const { login } = useContext(AuthContext)
+    const { login, error } = useContext(AuthContext)
 
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
             await login(inputs)
-            navigate("/")
+            const userData = JSON.parse(localStorage.getItem("userData"))
+
+            if (userData && userData.accessToken) {
+                
+                navigate("/")
+            } 
         } catch (err) {
-            setErr(err.response.data)
+            console.error("Login error:", err)
         }
     }
-
     return (
         <div className="login">
             <div className="card">
@@ -63,7 +65,7 @@ const Login = () => {
                             name="password"
                             onChange={handleChange}
                         />
-                        {err && <p>{err}</p>}
+                        {error && <p>{error}</p>}
                         <button onClick={handleLogin}>Login</button>
                     </form>
                 </div>

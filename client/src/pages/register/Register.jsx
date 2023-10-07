@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import "./register.scss"
 import axios from "axios"
 
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 const Register = () => {
     const [inputs, setInputs] = useState({
         username: "",
@@ -10,8 +12,8 @@ const Register = () => {
         password: "",
         name: "",
     })
-  const [successMessage, setSuccessMessage] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
+    const [successMessage, setSuccessMessage] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -19,10 +21,25 @@ const Register = () => {
     const handleClick = async (e) => {
         e.preventDefault()
 
+        if (
+            inputs.username.trim() === "" ||
+            inputs.email.trim() === "" ||
+            inputs.password.trim() === "" ||
+            inputs.name.trim() === ""
+        ) {
+            setErrorMessage("All Fields are required ...")
+            return
+        }
+
+        if (!emailPattern.test(inputs.email)) {
+            setErrorMessage("Invalid email address.")
+            return
+        }
+
         try {
             await axios.post("http://localhost:3006/api/auth/register", inputs)
             setSuccessMessage("User has been registered successfully.")
-            setErrorMessage("") 
+            setErrorMessage("")
         } catch (err) {
             setSuccessMessage("")
             setErrorMessage(err.response.data)

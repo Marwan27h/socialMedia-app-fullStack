@@ -6,7 +6,7 @@ export const getPosts = (req, res) => {
     const userId = req.query.userId
     const token = req.cookies.accessToken
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         let q = `
@@ -41,7 +41,7 @@ export const deletePost = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not logged in!")
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         const postId = req.params.id
@@ -69,7 +69,7 @@ export const addPost = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not logged in!")
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         const q =
@@ -95,7 +95,7 @@ export const updatePost = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not logged in!")
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         const q = "UPDATE posts SET `desc` = ? WHERE id = ? AND userId = ?"
@@ -113,7 +113,7 @@ export const sharePost = (req, res) => {
     const token = req.cookies.accessToken
     if (!token) return res.status(401).json("Not logged in!")
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         const postId = req.query.postId
@@ -166,7 +166,7 @@ export const getUserImages = (req, res) => {
     const userId = req.params.userId
     const token = req.cookies.accessToken
 
-    jwt.verify(token, "secretkey", (err, userInfo) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
         let q = `

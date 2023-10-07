@@ -50,7 +50,7 @@ const Layout = () => {
 };
 
     const ProtectedRoute = ({ children }) => {
-        if (!currentUser) {
+        if (currentUser === null) {
             return <Navigate to="/login" />
         }
 

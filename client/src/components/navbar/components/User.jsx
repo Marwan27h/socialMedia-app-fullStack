@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined"
@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query"
 
 const UserSection = ({
     currentUser,
-    handleLogout,
+    logout,
     getFirstName,
     handleDeleteUser,
 }) => {
@@ -51,10 +51,7 @@ const UserSection = ({
             <PersonOutlinedIcon />
 
             {currentUser && (
-                <LogoutIcon
-                    style={{ cursor: "pointer" }}
-                    onClick={handleLogout}
-                />
+                <LogoutIcon style={{ cursor: "pointer" }} onClick={logout} />
             )}
 
             <div className="user">
