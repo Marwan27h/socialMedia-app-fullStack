@@ -1,7 +1,6 @@
 import "./navbar.scss"
-
 import { useNavigate } from "react-router-dom"
-import { useContext, useState, useRef, useCallback, useEffect } from "react"
+import { React, useContext, useState, useRef, useCallback, useEffect } from "react"
 import { DarkModeContext } from "../../context/darkModeContext"
 import { AuthContext } from "../../context/authContext"
 import { useQuery } from "@tanstack/react-query"
