@@ -1,29 +1,13 @@
 import jwt from "jsonwebtoken"
-import { promisify } from "util"
-export const verifyToken = async (req, res, next) => {
-    const bearerToken = req.get("Authorization")
 
-    if (!bearerToken) {
-        return res.status(401).json({
-            success: false,
-            message: "A token is required for authentication",
-        })
-    }
+export const verifyToken = (req, res, next) => {
+    const token = req.cookies.accessToken
+    if (!token) return res.status(401).json("Not authenticated")
 
-    const token = bearerToken.replace("Bearer ", "")
+    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid")
 
-    try {
-        const verifyJwt = promisify(jwt.verify)
-        const decoded = await verifyJwt(token, process.env.JWT_SECRET)
-        console.log("Decoded User Data:", decoded)
-
-        req.user = decoded
-
+        req.userInfo = userInfo
         next()
-    } catch (err) {
-        console.error(err)
-        return res
-            .status(401)
-            .json({ success: false, message: "Invalid Token" })
-    }
+    })
 }

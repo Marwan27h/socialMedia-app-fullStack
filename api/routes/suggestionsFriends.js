@@ -4,11 +4,12 @@ import {
     addSuggestion,
     deleteSuggestion,
 } from "../controllers/suggestion.js"
+import { verifyToken } from "../middleware/verifyToken.js"
 
 const router = express.Router()
 
-router.get("/", getSuggestion)
-router.post("/", addSuggestion)
-router.delete("/", deleteSuggestion)
+router.get("/", verifyToken, getSuggestion)
+router.post("/", verifyToken, addSuggestion)
+router.delete("/", verifyToken, deleteSuggestion)
 
 export default router
