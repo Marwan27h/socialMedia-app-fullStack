@@ -4,11 +4,12 @@ import {
     addRelationships,
     deleteRelationships,
 } from "../controllers/relationship.js"
+import { verifyToken } from "../middleware/verifyToken.js"
 
 const router = express.Router()
 
 router.get("/", getRelationships)
-router.post("/", addRelationships)
-router.delete("/", deleteRelationships)
+router.post("/", verifyToken, addRelationships)
+router.delete("/", verifyToken, deleteRelationships)
 
 export default router

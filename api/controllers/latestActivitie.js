@@ -1,16 +1,10 @@
 import { db } from "../connect.js"
-import jwt from "jsonwebtoken"
 
 export const latestActivities = (req, res) => {
-    const token = req.cookies.accessToken
-    if (!token) return res.status(401).json("Not authenticated")
+    const userInfo = req.userInfo
+    const userId = userInfo.id
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, userInfo) => {
-        if (err) return res.status(403).json("Token is not valid")
-
-        const userId = userInfo.id
-
-        const q = `
+    const q = `
   SELECT
     'post' as type,
     p.id as activityId,
@@ -60,16 +54,15 @@ export const latestActivities = (req, res) => {
   LIMIT 5;
 `
 
-        db.query(
-            q,
-            [userId, userId, userId, userId, userId, userId, userId, userId],
-            (err, result) => {
-                if (err) {
-                    console.error(err)
-                    return res.status(500).json(err)
-                }
-                return res.json(result)
+    db.query(
+        q,
+        [userId, userId, userId, userId, userId, userId, userId, userId],
+        (err, result) => {
+            if (err) {
+                console.error(err)
+                return res.status(500).json(err)
             }
-        )
-    })
+            return res.json(result)
+        }
+    )
 }

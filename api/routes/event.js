@@ -1,14 +1,10 @@
 import express from "express"
-import {
-    getEvent,
-    addEvent,
-   
-} from "../controllers/events.js"
+import { getEvent, addEvent } from "../controllers/events.js"
+import { verifyToken } from "../middleware/verifyToken.js"
 
 const router = express.Router()
 
-router.get("/", getEvent)
-router.post("/", addEvent)
-
+router.get("/", verifyToken, getEvent)
+router.post("/", verifyToken, addEvent)
 
 export default router

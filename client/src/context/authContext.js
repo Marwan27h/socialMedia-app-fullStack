@@ -1,5 +1,4 @@
-
-import { createContext, React, useEffect, useState } from "react";
+import { createContext, React, useEffect, useState } from "react"
 import axios from "axios"
 
 export const AuthContext = createContext()
@@ -10,7 +9,6 @@ export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("userData")) || null
     )
-    console.log(currentUser)
 
     const login = async (inputs) => {
         try {
@@ -23,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
             )
 
             const { user, accessToken } = res.data
-            console.log(user)
 
             localStorage.setItem(
                 "userData",
@@ -46,23 +43,6 @@ export const AuthContextProvider = ({ children }) => {
 
             localStorage.removeItem("userData")
             setCurrentUser(null)
-        } catch (error) {
-            setError(error.response.data)
-        }
-    }
-    const fetchUpdatedUserData = async () => {
-        try {
-            const response = await axios.get(
-                `http://localhost:3006/api/users/${
-                    currentUser.id
-                }?${Date.now()}`,
-                {
-                    withCredentials: true,
-                }
-            )
-
-            const updatedUser = response.data
-            setCurrentUser(updatedUser)
         } catch (error) {
             setError(error.response.data)
         }

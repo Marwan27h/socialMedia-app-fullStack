@@ -7,14 +7,15 @@ import {
     sharePost,
     getUserImages,
 } from "../controllers/post.js"
+import { verifyToken } from "../middleware/verifyToken.js"
 
 const router = express.Router()
 
-router.get("/", getPosts)
-router.post("/", addPost)
-router.post("/share-post", sharePost)
-router.delete("/:id", deletePost)
-router.put("/:id", updatePost)
-router.get("/images/:userId", getUserImages)
+router.get("/", verifyToken, getPosts)
+router.post("/", verifyToken, addPost)
+router.post("/share-post", verifyToken, sharePost)
+router.delete("/:id", verifyToken, deletePost)
+router.put("/:id", verifyToken, updatePost)
+router.get("/images/:userId", verifyToken, getUserImages)
 
 export default router
