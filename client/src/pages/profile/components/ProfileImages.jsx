@@ -7,26 +7,38 @@ const ProfileImages = ({ data }) => {
     const [isProfilePicLoaded, setIsProfilePicLoaded] = useState(false)
 
     useEffect(() => {
-        const coverImage = new Image()
-        coverImage.src = data.coverPic ? "/upload/" + data.coverPic : NoImage
-        coverImage.onload = () => {
-            setIsCoverLoaded(true)
-        }
+        if (data) {
+            if (data.coverPic) {
+                const coverImage = new Image()
+                coverImage.src = "/upload/" + data.coverPic
+                coverImage.onload = () => {
+                    setIsCoverLoaded(true)
+                }
+            } else {
+                setIsCoverLoaded(true) // No cover image, mark it as loaded
+            }
 
-        const profilePicImage = new Image()
-        profilePicImage.src = data.profilePic
-            ? "/upload/" + data.profilePic
-            : noPersonImage
-        profilePicImage.onload = () => {
-            setIsProfilePicLoaded(true)
+            if (data.profilePic) {
+                const profilePicImage = new Image()
+                profilePicImage.src = "/upload/" + data.profilePic
+                profilePicImage.onload = () => {
+                    setIsProfilePicLoaded(true)
+                }
+            } else {
+                setIsProfilePicLoaded(true) // No profile picture, mark it as loaded
+            }
         }
-    }, [data.coverPic, data.profilePic])
+    }, [data])
 
     return (
         <div className="images">
             {isCoverLoaded ? (
                 <img
-                    src={data.coverPic ? "/upload/" + data.coverPic : NoImage}
+                    src={
+                        data && data.coverPic
+                            ? "/upload/" + data.coverPic
+                            : NoImage
+                    }
                     alt=""
                     className="cover"
                 />
@@ -36,7 +48,7 @@ const ProfileImages = ({ data }) => {
             {isProfilePicLoaded ? (
                 <img
                     src={
-                        data.profilePic
+                        data && data.profilePic
                             ? "/upload/" + data.profilePic
                             : noPersonImage
                     }
@@ -44,9 +56,7 @@ const ProfileImages = ({ data }) => {
                     className="profilePic"
                 />
             ) : (
-                <div className="profilePic placeholder">
-                   
-                </div>
+                <div className="profilePic placeholder"></div>
             )}
         </div>
     )
