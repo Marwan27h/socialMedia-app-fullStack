@@ -5,14 +5,13 @@
         -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
         -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
         box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-radius: 7px;
         border-bottom: 1px solid themed("border");
         background-color: themed("bg");
         color: themed("textColor");
 
         .container {
-            padding: 25px 24px;
+            padding: 29px 22px;
 
             @include mobile {
                 padding: 13px 15px;
@@ -166,7 +165,7 @@
                     width: 100%;
                     max-height: 500px;
                     object-fit: cover;
-                    margin-top: 20px;
+                    margin: 10px 0px;
 
                     @include mobile {
                         max-height: 300px;
@@ -184,10 +183,14 @@
                 position: relative;
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 14px;
+               
+                @include tablet {
+                    gap: 10px;
+                }
 
                 @include mobile {
-                    gap: 7px;
+                    gap: 3px;
                 }
 
                 .share-confirmation-overlay {
@@ -215,14 +218,12 @@
                     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
                 }
 
-                /* Center the buttons horizontally */
                 .buttons {
                     display: flex;
                     justify-content: center;
                     margin-top: 20px;
                 }
 
-                /* Style the buttons */
                 .buttons button {
                     margin: 0 10px;
                     padding: 4px 6px;
@@ -250,15 +251,25 @@
 
                     display: flex;
                     align-items: center;
+                    @include tablet {
+                        font-size: 13px;
+                    }
                     @include mobile {
                         padding: 0px 8px;
-                        right: 0;
                         font-size: 8px;
+                    }
+                    span {
+                        @include mobile {
+                            font-size: 7.5px;
+                        }
                     }
 
                     .placeIcon {
+                        @include tablet {
+                            font-size: 18px;
+                        }
                         @include mobile {
-                            font-size: 16px;
+                            font-size: 14px;
                         }
                     }
                 }
@@ -270,12 +281,24 @@
 
                     display: flex;
                     align-items: center;
+                    @include tablet {
+                        right: 115px;
+                        font-size: 13px;
+                    }
                     @include mobile {
                         padding: 1px 8px;
-                        right: 80px;
+                        right: 70px;
                         font-size: 8px;
                     }
+                    span {
+                        @include mobile {
+                            font-size: 7.5px;
+                        }
+                    }
                     .tagIcon {
+                        @include tablet {
+                            font-size: 18px;
+                        }
                         @include mobile {
                             font-size: 14px;
                         }
@@ -285,14 +308,25 @@
                 .item {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 5px;
                     cursor: pointer;
                     font-size: 14px;
+                    @include tablet {
+                        gap: 4px;
+                    }
+                    span {
+                        @include mobile {
+                            font-size: 7.5px;
+                        }
+                    }
 
                     .itemIcon {
+                        @include tablet {
+                            font-size: 17px;
+                        }
                         @include mobile {
-                            font-size: 18px;
-                            gap: 0px;
+                            font-size: 15px;
+                            gap: 5px;
                         }
                     }
 
