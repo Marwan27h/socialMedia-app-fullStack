@@ -9,7 +9,6 @@ import { AddLocationAltOutlined as AddLocationAltIcon } from "@mui/icons-materia
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
 import ShareConfirmationBox from "./ShareConfirmationBox"
 
-
 const LikeCommentShare = ({
     isLoading,
     likesData,
@@ -52,28 +51,31 @@ const LikeCommentShare = ({
                         onClick={handleLike}
                     />
                 )}
-                {likesData && likesData.length} Likes
+                <span>{likesData && likesData.length} Likes</span>
             </div>
             <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
                 <TextsmsOutlinedIcon className="itemIcon" />
-                {commentsData ? commentsData.length : "Loading"}{" "}
-                {commentsData && commentsData.length === 1
-                    ? "Comment"
-                    : "Comments"}
+                <span>
+                    {commentsData ? commentsData.length : "Loading"}{" "}
+                    {commentsData && commentsData.length === 1
+                        ? "Comment"
+                        : "Comments"}
+                </span>
             </div>
             <div className="item" onClick={handleShareClick}>
                 <ShareIcon className="itemIcon" />
+                <span>Share</span>
             </div>
             {post.place && (
                 <div className="placeItem">
                     <AddLocationAltIcon className="placeIcon" />
-                    {post.place}
+                    <span> {post.place}</span>
                 </div>
             )}
             {post.tag && (
                 <div className="tagItem">
                     <LocalOfferIcon className="tagIcon" />
-                    {post.tag}
+                    <span> {post.tag}</span>
                 </div>
             )}
             {showConfirmation && (

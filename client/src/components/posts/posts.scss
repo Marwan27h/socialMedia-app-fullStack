@@ -4,10 +4,10 @@
     @include themify($themes) {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px;
 
    @include mobile {
-       gap: 30px;
+       gap: 25px;
     }
    
 
