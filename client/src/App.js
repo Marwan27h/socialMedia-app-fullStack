@@ -15,6 +15,7 @@ import Profile from "./pages/profile/Profile"
 import About from "./pages/about/About"
 import ContactUs from "./pages/contact/ContactUs"
 import ShareEvent from "./pages/event/Event"
+import ProfileImages from "./pages/profile/components/ProfileImages"
 import "./style.scss"
 import { React, useContext } from "react"
 import { DarkModeContext } from "./context/darkModeContext"
@@ -76,16 +77,16 @@ const Layout = () => {
                 },
             ],
         },
-         {
-        path: "/event",
-        element: (
-            <ProtectedRoute>
-                <Layout>
-                    <ShareEvent /> 
-                </Layout>
-            </ProtectedRoute>
-        ),
-    },
+        {
+            path: "/event",
+            element: (
+                <ProtectedRoute>
+                    <Layout>
+                        <ShareEvent />
+                    </Layout>
+                </ProtectedRoute>
+            ),
+        },
         {
             path: "/login",
             element: <Login />,
@@ -93,6 +94,10 @@ const Layout = () => {
         {
             path: "/register",
             element: <Register />,
+        },
+        {
+            path: "/gallery",
+            element: <ProfileImages />,
         },
         {
             path: "/contact",

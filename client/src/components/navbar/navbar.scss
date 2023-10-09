@@ -12,7 +12,7 @@
         top: 0;
         background-color: themed("bg");
         color: themed("textColor");
-        z-index: 999;
+        z-index: 10;
 
         .left {
             display: flex;
@@ -25,7 +25,7 @@
                 top: 100%;
                 left: 0;
                 width: 275px;
-                height: 560px;
+                height: 270px;
                 overflow-y: auto;
 
                 border: none;

@@ -129,13 +129,12 @@ export const sharePost = (req, res) => {
 }
 
 export const getUserImages = (req, res) => {
-    const userId = req.params.userId
-
+    const userId = req.params.userId || req.user.id
     let q = `
-            SELECT img
-            FROM posts
-            WHERE userId = ? AND img IS NOT NULL AND img != ''
-        `
+        SELECT img
+        FROM posts
+        WHERE userId = ? AND img IS NOT NULL AND img != ''
+    `
 
     const values = [userId]
 
