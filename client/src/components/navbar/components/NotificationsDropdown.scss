@@ -2,127 +2,109 @@
 @import "../../../style.scss";
 
 .notifications-dropdown {
-  @include themify($themes) {
-    position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
-    overflow: scroll;
-    background-color: themed("bgSoft");
-    padding: 10px;
-      -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      margin-bottom: 10px;
-      background-color: themed("bg");
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-bottom: 1px solid themed("border");
-      border-left: 1px solid themed("border");
-    
+    @include themify($themes) {
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        background-color: themed("bgSoft");
+        padding: 10px;
+        -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        margin-bottom: 10px;
+        background-color: themed("bg");
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-bottom: 1px solid themed("border");
+        border-left: 1px solid themed("border");
 
-    @include mobile {
-      display: none;
-    }
-    @include tablet {
-      display: none;
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .item {
-      display: flex;
-      flex-direction: column;
-      padding: 14px;
-      -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      margin-bottom: 10px;
-      background-color: themed("bg");
-      border-radius: 8px;
-      border-bottom: 1px solid themed("border");
-      border-left: 1px solid themed("border");
-
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-          padding: 4px;
-          border-bottom: 1px solid themed("border");
-          display: flex;
-          align-items: center;
-          gap: 15px;
-
-          &:last-child {
-            border-bottom: none;
-          }
-
-          .user {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 10px 0px;
-
-            .userInfo {
-              display: flex;
-              align-items: center;
-              gap: 15px;
-              position: relative;
-                img {
-                width: 35px;
-                height: 35px;
-                border-radius: 50%;
-                object-fit: cover;
-              }
-
-             .notificationText{
-
-
-
-
-            .actionUser{
-               font-size: 12px;
-               font-weight: 700;
-                  color: themed("textColor");
-               
-
-            }
-              .actionType{
-               font-size: 12px;
-               font-weight: 400;
-                color: themed("textColor");
-               
-
-            }
-                .actionDate{
-               font-size: 10px;
-               font-weight: 600;
-                color: themed("textColor");
-                opacity: 0.7;
-
-            }
-
-
-         
-
-              span {
-                font-size: 14px;
-                font-weight: 400;
-                color: themed("textColor");
-                opacity: 0.7;
-              }
-
-                
-              }
-
-            
-            }
-          }
+        @include mobile {
+          z-index: 9;
         }
-      }
+        @include tablet {
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            padding: 14px;
+            -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+            -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+            box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+            margin-bottom: 10px;
+            background-color: themed("bg");
+            border-radius: 8px;
+            border-bottom: 1px solid themed("border");
+            border-left: 1px solid themed("border");
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    padding: 4px;
+                    border-bottom: 1px solid themed("border");
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .user {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 10px 0px;
+
+                        .userInfo {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            position: relative;
+                            img {
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+
+                            .notificationText {
+                                .actionUser {
+                                    font-size: 12px;
+                                    font-weight: 700;
+                                    color: themed("textColor");
+                                }
+                                .actionType {
+                                    font-size: 12px;
+                                    font-weight: 400;
+                                    color: themed("textColor");
+                                }
+                                .actionDate {
+                                    font-size: 10px;
+                                    font-weight: 600;
+                                    color: themed("textColor");
+                                    opacity: 0.7;
+                                }
+
+                                span {
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    color: themed("textColor");
+                                    opacity: 0.7;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }
