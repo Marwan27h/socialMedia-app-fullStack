@@ -7,7 +7,7 @@ export const getFriends = (req, res) => {
     FROM users AS u
     JOIN relationships AS r ON (u.id = r.followedUserId)
     WHERE r.followerUserId = ? AND u.id <> ?
-    LIMIT 5;
+    ;
 `
 
     db.query(q, [userInfo.id, userInfo.id], (err, data) => {

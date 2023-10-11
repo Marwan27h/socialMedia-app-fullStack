@@ -3,14 +3,15 @@ import { Link } from "react-router-dom"
 import noPersonImage from "../../../../assets/noPersonImage.png"
 
 const OnlineFriendsSection = ({ friendsData }) => {
+      const firstFiveFriends = friendsData.slice(0, 5)
     return (
         <div className="item">
             <span>Online Friends</span>
             <hr />
-            {friendsData.length === 0 ? (
+            {firstFiveFriends.length === 0 ? (
                 <p>No friends online available.</p>
             ) : (
-                friendsData.map((friend, index) => (
+                firstFiveFriends.map((friend, index) => (
                     <div className="user" key={index}>
                         <div className="userInfo">
                             <img
