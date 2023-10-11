@@ -1,7 +1,7 @@
 import "./leftBar.scss"
 import React, { useContext, useState } from "react"
 import { AuthContext } from "../../context/authContext"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { makeRequest } from "../../axios"
 import Friends from "../../assets/1.png"
 import Groups from "../../assets/2.png"
@@ -19,6 +19,7 @@ import Fund from "../../assets/13.png"
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import CloseIcon from "@mui/icons-material/Close"
+import noPersonImage from "../../assets/noPersonImage.png"
 
 const NavigationItem = ({ icon, label, path, onClick }) => (
     <div
@@ -34,12 +35,37 @@ const NavigationItem = ({ icon, label, path, onClick }) => (
 const LeftBar = () => {
     const { currentUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [friendsData, setFriendsData] = useState([])
+    const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
     const [isGalleryOpen, setIsGalleryOpen] = useState(false)
     const [galleryImages, setGalleryImages] = useState([])
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
     const handleNavigation = (path) => {
         navigate(path)
+    }
+
+    const handleFriendsClick = async () => {
+        try {
+            const response = await makeRequest.get("/friends")
+            console.log("Friends Data:", response.data)
+
+            if (Array.isArray(response.data)) {
+                const friends = response.data
+
+                if (friends.length > 0) {
+                    // Set the friends data in state
+                    setFriendsData(friends)
+                    setIsFriendsListOpen(true) // Open the friends list modal
+                } else {
+                    console.log("No friends available.")
+                }
+            } else {
+                console.log("Invalid response format.")
+            }
+        } catch (error) {
+            console.error("Error fetching friends:", error)
+        }
     }
 
     const handleGalleryClick = async () => {
@@ -81,6 +107,7 @@ const LeftBar = () => {
 
     const handleCloseGallery = () => {
         setIsGalleryOpen(false)
+        setIsFriendsListOpen(false)
     }
 
     return (
@@ -88,9 +115,9 @@ const LeftBar = () => {
             <div className="container">
                 <div className="menu">
                     <NavigationItem
-                        icon={Friends}
+                        icon={Fund}
                         label="Friends"
-                        onClick={handleNavigation}
+                        onClick={handleFriendsClick}
                     />
                     <NavigationItem
                         icon={Groups}
@@ -117,9 +144,9 @@ const LeftBar = () => {
                 <div className="menu">
                     <span>Your shortcuts</span>
                     <NavigationItem
-                        icon={Fund}
-                        label="Events"
-                        onClick={handleNavigation}
+                        icon={Friends}
+                        label="Friends"
+                        onClick={handleFriendsClick}
                     />
                     <NavigationItem
                         icon={Gaming}
@@ -213,6 +240,40 @@ const LeftBar = () => {
                     ) : (
                         <p>No images</p>
                     )}
+                </div>
+            )}
+            {isFriendsListOpen && friendsData && friendsData.length > 0 && (
+                <div className="fullscreen-friends-modal">
+                    <CloseIcon
+                        className="closeIcon"
+                        fontSize="large"
+                        onClick={handleCloseGallery}
+                    />
+                    {friendsData.map((friend, index) => (
+                        <div className="user" key={index}>
+                            <div className="userInfo">
+                                <img
+                                    className="img"
+                                    src={
+                                        friend.profilePic
+                                            ? "/upload/" + friend.profilePic
+                                            : noPersonImage
+                                    }
+                                    alt={friend.name}
+                                />
+                                <div className="online" />
+                                <Link
+                                    to={`/profile/${friend.userId}`}
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "inherit",
+                                    }}
+                                >
+                                    <span>{friend.name}</span>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
