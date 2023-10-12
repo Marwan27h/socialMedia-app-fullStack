@@ -1,98 +1,123 @@
 @import "../../style.scss";
 
 .update {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 30px;
-  background: linear-gradient(
-      rgba(39, 11, 96, 0.5),
-      rgba(39, 11, 96, 0.5)
-    ),
-    url("https://images.pexels.com/photos/4901990/pexels-photo-4901990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-    center;
-  background-size: cover;
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
-    @include mobile {
-
-       width: 240px;
+    @include themify($themes) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
         padding: 30px;
-                    
-                }
+        background-color: themed("bg");
+        color: themed("textColor");
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-
-     @include mobile {
-
-      gap: 3px;
-                    
-                }
-
-    label {
-      font-weight: 600;
         @include mobile {
+            width: 240px;
+            padding: 30px;
+        }
 
-     
-        font-size: 13px;
-                    
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            @include mobile {
+                gap: 3px;
+            }
+
+            label {
+                font-weight: 600;
+                @include mobile {
+                    font-size: 13px;
                 }
-    }
+            }
 
-    input {
-      width: 100%;
-      padding: 4px 6px ;
-      border: none;
-      border-radius: 5px;
-      background-color: inherit;
-      color: white;
-      font-size: 13px;
-      font-weight: 500;
-      border-bottom: 1px solid lightgray;
+            input {
+                width: 100%;
+                padding: 4px 6px;
+                border: none;
+                border-radius: 5px;
+                background-color: inherit;
+                color: themed("textColor");
+                font-size: 13px;
+                font-weight: 500;
+                border-bottom: 1px solid themed("border");
 
-
-     @include mobile {
-
-     width: 92%;
-        padding: 2px 1px;
-        font-size: 10px;
-        border-radius: 5px;
-                    
+                @include mobile {
+                    width: 92%;
+                    padding: 2px 1px;
+                    font-size: 10px;
+                    border-radius: 5px;
                 }
-    }
+            }
 
-    button {
-      width: 100%;
-      padding: 4px 5px;
-      border: none;
-      border-radius: 5px;
-      background-color: #5271ff;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
+            select {
+                width: 100%; // Apply the same width to select elements
+                padding: 4px 6px;
+                border: none;
+                border-radius: 5px;
+                background-color: inherit;
+                color: themed("textColor");
+                font-size: 13px;
+                font-weight: 500;
+                border-bottom: 1px solid themed("border");
 
-      &:last-child {
-        background-color: rgb(55, 40, 42);
-        margin-top: 10px;
-
-        
-      }
-       @include mobile {
-
-     width: 95%;
-        padding: 2px 3px;
-        font-size: 11px;
-                    
+                @include mobile {
+                    width: 92%;
+                    padding: 2px 1px;
+                    font-size: 10px;
+                    border-radius: 5px;
                 }
+            }
+
+            .images-container {
+                display: flex;
+                gap: 10px;
+                align-items: center; // Center align the image inputs
+
+                @include mobile {
+                    flex-direction: column;
+                    gap: 3px;
+                }
+
+                .image-upload {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    @include mobile {
+                        gap: 3px;
+                    }
+
+                    input[type="file"] {
+                        display: none;
+                    }
+                }
+            }
+
+            button {
+                width: 100%;
+                padding: 4px 5px;
+                border: none;
+                border-radius: 5px;
+                background-color: #5271ff;
+                color: white;
+                font-size: 14px;
+                cursor: pointer;
+
+                &:last-child {
+                    background-color: rgb(144, 24, 40);
+                    margin-top: 10px;
+                }
+
+                @include mobile {
+                    width: 95%;
+                    padding: 2px 3px;
+                    font-size: 11px;
+                }
+            }
+        }
     }
-  }
 }
