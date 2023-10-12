@@ -72,6 +72,7 @@
                 bottom: 300px;
                 right: 44%;
                 color: themed("textColor");
+                background-color: themed("bgSoft");
                 font-size: 24px;
                 cursor: pointer;
             }
@@ -95,6 +96,8 @@
                     margin-bottom: 200px;
                     background-color: inherit;
                     border: none;
+                    color: themed("textColor");
+                    background-color: themed("bgSoft");
                 }
             }
         }
@@ -122,8 +125,9 @@
         .fullscreen-friends-modal .closeIcon {
             position: absolute;
             bottom: 20px;
-            right: 120px;
+            right: 10px;
             color: themed("textColor");
+             background-color: themed("bgSoft");
             font-size: 24px;
             cursor: pointer;
         }

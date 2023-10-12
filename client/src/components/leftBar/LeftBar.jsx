@@ -116,7 +116,7 @@ const LeftBar = () => {
                 <div className="menu">
                     <NavigationItem
                         icon={Fund}
-                        label="Friends"
+                        label="Fund"
                         onClick={handleFriendsClick}
                     />
                     <NavigationItem

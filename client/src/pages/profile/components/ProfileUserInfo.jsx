@@ -101,7 +101,7 @@ const ProfileUserInfo = ({
                     {showSlideshow && (
                         <div className="slideshow">
                             <CloseIcon
-                                className="closeIcon"
+                                className="closeIconProfile"
                                 fontSize="large"
                                 onClick={handleCloseSlideshow}
                             />
