@@ -24,9 +24,8 @@ const Login = () => {
             const userData = JSON.parse(localStorage.getItem("userData"))
 
             if (userData && userData.accessToken) {
-                
                 navigate("/")
-            } 
+            }
         } catch (err) {
             console.error("Login error:", err)
         }
@@ -67,6 +66,7 @@ const Login = () => {
                         />
                         {error && <p>{error}</p>}
                         <button onClick={handleLogin}>Login</button>
+                     
                     </form>
                 </div>
             </div>
