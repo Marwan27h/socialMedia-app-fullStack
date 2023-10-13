@@ -105,9 +105,9 @@
                 flex-direction: column;
                 gap: 30px;
                 background-color: inherit;
-                   @include mobile {
-                     gap: 20px;
-                    }
+                @include mobile {
+                    gap: 20px;
+                }
 
                 input {
                     color: white;

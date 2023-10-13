@@ -35,8 +35,10 @@ const NavigationItem = ({ icon, label, path, onClick }) => (
 const LeftBar = () => {
     const { currentUser } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [friendsData, setFriendsData] = useState([])
-    const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
+    const [followingData, setFollowingData] = useState([])
+    const [isFollowingOpen, setIsFollowingOpen] = useState(false)
+    const [followedData, setFollowedData] = useState(0)
+    const [isFollowedOpen, setIsFollowedOpen] = useState(false)
     const [isGalleryOpen, setIsGalleryOpen] = useState(false)
     const [galleryImages, setGalleryImages] = useState([])
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -45,53 +47,29 @@ const LeftBar = () => {
         navigate(path)
     }
 
-    const handleFriendsClick = async () => {
+    const fetchData = async (endpoint) => {
         try {
-            const response = await makeRequest.get("/friends")
-            console.log("Friends Data:", response.data)
-
-            if (Array.isArray(response.data)) {
-                const friends = response.data
-
-                if (friends.length > 0) {
-                    // Set the friends data in state
-                    setFriendsData(friends)
-                    setIsFriendsListOpen(true) // Open the friends list modal
-                } else {
-                    console.log("No friends available.")
-                }
-            } else {
-                console.log("Invalid response format.")
-            }
+            const response = await makeRequest.get(endpoint)
+            return response.data
         } catch (error) {
-            console.error("Error fetching friends:", error)
+            console.error("Error fetching data:", error)
         }
     }
 
-    const handleGalleryClick = async () => {
-        try {
-            console.log("handleGalleryClick is called")
-
-            const response = await makeRequest.get(
-                `/posts/images/${currentUser.id}`
-            )
-            console.log("Response data:", response.data)
-
-            if (typeof response.data === "string") {
-                // If the response is a string, parse it as JSON
-                const data = JSON.parse(response.data)
-
-                if (data && data.length > 0) {
-                    setGalleryImages(data)
-                    setIsGalleryOpen(true)
-                    setCurrentImageIndex(0)
-                } else {
-                    console.log("No images found for this user.")
-                }
-            } else if (Array.isArray(response.data)) {
-                // If the response is already an array, no need to parse
-                if (response.data.length > 0) {
-                    setGalleryImages(response.data)
+    const openModal = async (endpoint) => {
+        const data = await fetchData(endpoint)
+        if (data) {
+            if (endpoint.includes("followed-count")) {
+                setFollowedData(data)
+                setIsFollowedOpen(true)
+            } else if (endpoint.includes("friends")) {
+                setFollowingData(data)
+                setIsFollowingOpen(true)
+            } else if (endpoint.includes("images")) {
+                const dataArray =
+                    typeof data === "string" ? JSON.parse(data) : data
+                if (dataArray && dataArray.length > 0) {
+                    setGalleryImages(dataArray)
                     setIsGalleryOpen(true)
                     setCurrentImageIndex(0)
                 } else {
@@ -100,14 +78,13 @@ const LeftBar = () => {
             } else {
                 console.log("Invalid response format.")
             }
-        } catch (error) {
-            console.error("Error fetching gallery images:", error)
         }
     }
 
-    const handleCloseGallery = () => {
+    const closeModal = () => {
         setIsGalleryOpen(false)
-        setIsFriendsListOpen(false)
+        setIsFollowingOpen(false)
+        setIsFollowedOpen(false)
     }
 
     return (
@@ -117,11 +94,11 @@ const LeftBar = () => {
                     <NavigationItem
                         icon={Fund}
                         label="Fund"
-                        onClick={handleFriendsClick}
+                        onClick={handleNavigation}
                     />
                     <NavigationItem
-                        icon={Groups}
-                        label="Groups"
+                        icon={Gaming}
+                        label="Gaming"
                         onClick={handleNavigation}
                     />
                     <NavigationItem
@@ -146,17 +123,23 @@ const LeftBar = () => {
                     <NavigationItem
                         icon={Friends}
                         label="Friends"
-                        onClick={handleFriendsClick}
+                        onClick={() => openModal("/friends")}
                     />
                     <NavigationItem
-                        icon={Gaming}
-                        label="Gaming"
-                        onClick={handleNavigation}
+                        icon={Groups}
+                        label="Followers"
+                        onClick={() =>
+                            openModal(
+                                `/friends/followed-count/${currentUser.id}`
+                            )
+                        }
                     />
                     <NavigationItem
                         icon={Gallery}
                         label="Gallery"
-                        onClick={handleGalleryClick}
+                        onClick={() =>
+                            openModal(`/posts/images/${currentUser.id}`)
+                        }
                     />
                     <NavigationItem
                         icon={Videos}
@@ -195,11 +178,11 @@ const LeftBar = () => {
             </div>
 
             {isGalleryOpen && (
-                <div className="fullscreen-image-container">
+                <div className="fullscreen-modal-container">
                     <CloseIcon
                         className="closeIcon"
                         fontSize="large"
-                        onClick={handleCloseGallery}
+                        onClick={() => closeModal("gallery")}
                     />
                     {galleryImages.length > 0 ? (
                         <>
@@ -242,38 +225,74 @@ const LeftBar = () => {
                     )}
                 </div>
             )}
-            {isFriendsListOpen && friendsData && friendsData.length > 0 && (
+            {isFollowingOpen && (
                 <div className="fullscreen-friends-modal">
                     <CloseIcon
                         className="closeIcon"
                         fontSize="large"
-                        onClick={handleCloseGallery}
+                        onClick={() => closeModal("friends")}
                     />
-                    {friendsData.map((friend, index) => (
-                        <div className="user" key={index}>
-                            <div className="userInfo">
-                                <img
-                                    className="img"
-                                    src={
-                                        friend.profilePic
-                                            ? "/upload/" + friend.profilePic
-                                            : noPersonImage
-                                    }
-                                    alt={friend.name}
-                                />
-                                <div className="online" />
-                                <Link
-                                    to={`/profile/${friend.userId}`}
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "inherit",
-                                    }}
-                                >
-                                    <span>{friend.name}</span>
-                                </Link>
+                    {followingData.length > 0 &&
+                        followingData.map((friend, index) => (
+                            <div className="user" key={index}>
+                                <div className="userInfo">
+                                    <img
+                                        className="img"
+                                        src={
+                                            friend.profilePic
+                                                ? "/upload/" + friend.profilePic
+                                                : noPersonImage
+                                        }
+                                        alt={friend.name}
+                                    />
+                                    <div className="online" />
+                                    <Link
+                                        to={`/profile/${friend.userId}`}
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "inherit",
+                                        }}
+                                    >
+                                        <span>{friend.name}</span>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                </div>
+            )}
+            {isFollowedOpen && (
+                <div className="fullscreen-friends-modal">
+                    <CloseIcon
+                        className="closeIcon"
+                        fontSize="large"
+                        onClick={() => closeModal("friends")}
+                    />
+                    {followedData.length > 0 &&
+                        followedData.map((friend, index) => (
+                            <div className="user" key={index}>
+                                <div className="userInfo">
+                                    <img
+                                        className="img"
+                                        src={
+                                            friend.profilePic
+                                                ? "/upload/" + friend.profilePic
+                                                : noPersonImage
+                                        }
+                                        alt={friend.name}
+                                    />
+                                    <div className="online" />
+                                    <Link
+                                        to={`/profile/${friend.userId}`}
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "inherit",
+                                        }}
+                                    >
+                                        <span>{friend.name}</span>
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
                 </div>
             )}
         </div>

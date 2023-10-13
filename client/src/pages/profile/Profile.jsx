@@ -107,6 +107,7 @@ const Profile = () => {
                 `/friends/followed-count/${userId}`
             )
             setFollowedCount(response.data)
+         
         } catch (error) {
             console.error("Error fetching followed count:", error)
         } finally {
@@ -122,6 +123,7 @@ const Profile = () => {
 
         fetchCounts()
     }, [fetchFollowingCount, fetchFollowedCount])
+       console.log(followedCount)
 
     return (
         <div className="profile">
