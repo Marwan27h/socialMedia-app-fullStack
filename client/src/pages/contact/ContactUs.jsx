@@ -1,7 +1,7 @@
 import { React, useState } from "react"
 import { Link } from "react-router-dom"
 import "./contactUs.scss"
-import axios from "axios"
+import { makeRequest } from "../../axios"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 
 const ContactUs = () => {
@@ -13,7 +13,7 @@ const ContactUs = () => {
     })
     const [successMessage, setSuccessMessage] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
-    const [formIncomplete, setFormIncomplete] = useState(false) 
+    const [formIncomplete, setFormIncomplete] = useState(false)
 
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -23,12 +23,12 @@ const ContactUs = () => {
         e.preventDefault()
 
         if (!isFormValid()) {
-            setFormIncomplete(true) 
+            setFormIncomplete(true)
             return
         }
 
         try {
-            await axios.post("http://localhost:3006/api/contact", inputs)
+            await makeRequest.post("/contact", inputs)
             setSuccessMessage("Your message has been sent successfully.")
             setErrorMessage("")
             setFormIncomplete(false)
@@ -39,10 +39,9 @@ const ContactUs = () => {
                 message: "",
             })
 
-           
             setTimeout(() => {
                 setSuccessMessage("")
-            }, 3000) 
+            }, 3000)
         } catch (err) {
             setSuccessMessage("")
             setErrorMessage("Failed to send message. Please try again later.")
@@ -71,7 +70,9 @@ const ContactUs = () => {
                     </p>
                     <span>Go to home page? </span>
                     <Link to="/">
-                        <button><HomeOutlinedIcon/></button>
+                        <button>
+                            <HomeOutlinedIcon />
+                        </button>
                     </Link>
                 </div>
                 <div className="right">
@@ -111,7 +112,7 @@ const ContactUs = () => {
                         {errorMessage && (
                             <div className="error">{errorMessage}</div>
                         )}
-                        {formIncomplete && ( 
+                        {formIncomplete && (
                             <div className="error">
                                 Please fill out all fields.
                             </div>

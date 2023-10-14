@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import "./register.scss"
-import axios from "axios"
+import { makeRequest } from "../../axios"
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
@@ -37,7 +37,7 @@ const Register = () => {
         }
 
         try {
-            await axios.post("http://localhost:3006/api/auth/register", inputs)
+            await makeRequest.post("/auth/register", inputs)
             setSuccessMessage("User has been registered successfully.")
             setErrorMessage("")
         } catch (err) {
