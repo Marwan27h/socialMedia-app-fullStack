@@ -27,23 +27,23 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "*",
     })
 )
 app.use(cookieParser())
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, '../client/public/upload')
+    destination: function (req, file, cb) {
+        cb(null, "../client/public/upload")
     },
-    filename: function(req, file, cb){
-      cb(null, Date.now() + file.originalname)
-    }
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname)
+    },
 })
 
-const upload = multer({storage: storage})
+const upload = multer({ storage: storage })
 
-app.post("/api/upload", upload.single("file"),(req, res) =>{
+app.post("/api/upload", upload.single("file"), (req, res) => {
     const file = req.file
     res.status(200).json(file.filename)
 })
@@ -61,7 +61,6 @@ app.use("/api/users", activityRoutes)
 app.use("/api/notifications", NotificationsLikesCommentsRoutes)
 app.use("/api/contact", contactRoutes)
 app.use("/api/event", eventRoutes)
-
 
 app.listen(PORT, () => {
     console.log(`the server runs at PORT ${PORT},`)
