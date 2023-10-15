@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 
 export const register = (req, res) => {
     const q = "SELECT * FROM users WHERE username = ?"
-
+    console.log("body", req.body)
     db.query(q, [req.body.username], (err, data) => {
         if (err) return res.status(500).json(err)
         if (data.length) return res.status(409).json("User already exists")
