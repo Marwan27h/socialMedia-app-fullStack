@@ -21,21 +21,22 @@ import multer from "multer"
 
 //middlewares
 app.use(function (req, res, next) {
-    const allowedOrigins = ["https://socialmedia-frontend-95da.onrender.com"]
+    // res.header("Access-Control-Allow-Origin", "*");
+    const allowedOrigins = [
+        "http://localhost:3000",
+        "https://socialmedia-frontend-95da.onrender.com",
+    ]
     const origin = req.headers.origin
-
-    if (!origin || allowedOrigins.includes(origin)) {
-        res.setHeader("Access-Control-Allow-Origin", origin || "*")
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin)
     }
-
-    // Rest of your CORS configuration
+    console.log("Origin:", origin)
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     )
-    res.header("Access-Control-Allow-Credentials", true)
+    res.header("Access-Control-Allow-credentials", true)
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE")
-
     next()
 })
 app.use(express.json())
