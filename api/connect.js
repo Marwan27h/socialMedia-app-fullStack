@@ -18,7 +18,7 @@ db.connect((err) => {
         console.log("Connected to MySQL server")
     }
 })
-//console.log
+
 db.on("error", (err) => {
     console.error("Database error:", err)
 })
