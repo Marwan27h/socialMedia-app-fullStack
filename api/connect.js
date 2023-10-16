@@ -11,7 +11,6 @@ export const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-// Attempt to connect to the database
 db.connect((err) => {
     if (err) {
         console.error("Error connecting to MySQL:", err)
@@ -20,10 +19,8 @@ db.connect((err) => {
     }
 })
 
-// You can also listen for disconnections
 db.on("error", (err) => {
     console.error("Database error:", err)
 })
 
-// Export the connection for use in your application
 export default db
