@@ -8,7 +8,7 @@ import { verifyToken } from "../middleware/verifyToken.js"
 
 const router = express.Router()
 
-router.get("/", getSuggestion)
+router.get("/", verifyToken, getSuggestion)
 router.post("/", verifyToken, addSuggestion)
 router.delete("/", verifyToken, deleteSuggestion)
 
