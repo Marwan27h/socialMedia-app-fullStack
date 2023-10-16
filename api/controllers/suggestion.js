@@ -1,9 +1,8 @@
 import { db } from "../connect.js"
 
-export const getSuggestion = async (req, res) => {
-    try {
-        const userInfo = req.userInfo
-        const q = `
+export const getSuggestion = (req, res) => {
+    const userInfo = req.userInfo
+    const q = `
             SELECT DISTINCT u.id AS userId, name, profilePic
             FROM users AS u
             LEFT JOIN relationships AS r1 ON (u.id = r1.followedUserId AND r1.followerUserId = ?)
@@ -13,83 +12,48 @@ export const getSuggestion = async (req, res) => {
             LIMIT 2;
         `
 
-        const data = await new Promise((resolve, reject) => {
-            db.query(
-                q,
-                [userInfo.id, userInfo.id, userInfo.id],
-                (err, data) => {
-                    if (err) {
-                        reject(err)
-                    }
-                    resolve(data)
-                }
-            )
-        })
-
-        res.status(200).json(data)
-    } catch (error) {
-        res.status(500).json(error)
-    }
+    db.query(q, [userInfo.id, userInfo.id, userInfo.id], (err, data) => {
+        if (err) return res.status(500).json(err)
+        return res.status(200).json(data)
+    })
 }
 
-export const addSuggestion = async (req, res) => {
-    try {
-        const { followerUserId, followedUserId } = req.body
+export const addSuggestion = (req, res) => {
+    const { followerUserId, followedUserId } = req.body
 
-        const qAddSuggestion = `INSERT INTO relationships (followerUserId, followedUserId) VALUES (?, ?)`
+    const qAddSuggestion = `INSERT INTO relationships (followerUserId, followedUserId)
+      VALUES (?, ?)`
 
-        await new Promise((resolve, reject) => {
-            db.query(
-                qAddSuggestion,
-                [followerUserId, followedUserId],
-                (err) => {
-                    if (err) {
-                        reject(err)
-                    }
-                    resolve()
-                }
-            )
-        })
+    db.query(qAddSuggestion, [followerUserId, followedUserId], (err) => {
+        if (err) return res.status(500).json(err)
 
-        res.status(200).json("Suggestion added successfully")
-    } catch (error) {
-        res.status(500).json(error)
-    }
+        return res.status(200).json("Suggestion added successfully")
+    })
 }
 
-export const deleteSuggestion = async (req, res) => {
-    try {
-        const { followerUserId, followedUserId } = req.body
+export const deleteSuggestion = (req, res) => {
+    const { followerUserId, followedUserId } = req.body
 
-        const q = `
-            SELECT DISTINCT u.id AS userId, name, profilePic
-            FROM users AS u
-            JOIN relationships AS r1 ON (u.id = r1.followedUserId)
-            LEFT JOIN relationships AS r2 ON (u.id = r2.followedUserId AND r2.followerUserId = ?)
-            WHERE r1.followerUserId IN (
-                SELECT followedUserId
-                FROM relationships
-                WHERE followerUserId = ?
-            ) AND r2.followedUserId IS NULL
-            AND u.id NOT IN (
-                SELECT followedUserId
-                FROM relationships
-                WHERE followerUserId = ? AND followedUserId = ?
-            )
-            LIMIT 10;
-        `
+    const q = `SELECT DISTINCT u.id AS userId, name, profilePic
+           FROM users AS u
+           JOIN relationships AS r1 ON (u.id = r1.followedUserId)
+           LEFT JOIN relationships AS r2 ON (u.id = r2.followedUserId AND r2.followerUserId = ?)
+           WHERE r1.followerUserId IN (
+               SELECT followedUserId
+               FROM relationships
+               WHERE followerUserId = ?
+           ) AND r2.followedUserId IS NULL
+           AND u.id NOT IN (
+               SELECT followedUserId
+               FROM relationships
+               WHERE followerUserId = ? AND followedUserId = ?
+           )
+           LIMIT 10
+          `
 
-        await new Promise((resolve, reject) => {
-            db.query(q, [followerUserId, followedUserId], (err) => {
-                if (err) {
-                    reject(err)
-                }
-                resolve()
-            })
-        })
+    db.query(qDeleteSuggestion, [followerUserId, followedUserId], (err) => {
+        if (err) return res.status(500).json(err)
 
-        res.status(200).json("Suggestion deleted successfully")
-    } catch (error) {
-        res.status(500).json(error)
-    }
+        return res.status(200).json("Suggestion deleted successfully")
+    })
 }
