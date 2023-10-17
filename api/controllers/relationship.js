@@ -20,7 +20,10 @@ export const addRelationships = (req, res) => {
     const values = [userInfo.id, req.body.userId]
 
     db.query(q, [values], (err, data) => {
-        if (err) return res.status(500).json(err)
+        if (err) {
+            return res.status(500).json({ message: "Internal Server Error" })
+        }
+
         return res.status(200).json("Following")
     })
 }
