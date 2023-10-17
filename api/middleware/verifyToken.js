@@ -7,7 +7,6 @@ export const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: "No token provided" })
     }
 
-    // Split the "Bearer" prefix from the token value
     const tokenValue = token.split(" ")[1]
 
     jwt.verify(tokenValue, process.env.JWT_SECRET, (err, userInfo) => {
