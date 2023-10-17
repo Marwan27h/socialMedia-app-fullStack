@@ -5,7 +5,8 @@ const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/api`
 const getAccessToken = () => {
     const userData = JSON.parse(localStorage.getItem("userData"))
     const token = userData ? userData.accessToken : null
-    console.log("Access Token:", token) 
+
+    console.log("Access Token:", token)
     return token
 }
 
