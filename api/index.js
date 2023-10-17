@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
     if (allowedOrigins.includes(origin)) {
         res.setHeader("Access-Control-Allow-Origin", origin)
     }
-    console.log("Origin:", origin)
+
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
