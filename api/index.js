@@ -16,7 +16,6 @@ import NotificationsLikesCommentsRoutes from "./routes/notifications.js"
 import contactRoutes from "./routes/contacts.js"
 import eventRoutes from "./routes/event.js"
 import cookieParser from "cookie-parser"
-import cors from "cors"
 import multer from "multer"
 
 //middlewares
