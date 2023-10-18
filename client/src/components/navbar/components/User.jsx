@@ -48,7 +48,7 @@ const UserSection = ({
                 />
             )}
 
-            <PersonOutlinedIcon />
+            <PersonOutlinedIcon  className="personIcon"/>
 
             {currentUser && (
                 <LogoutIcon style={{ cursor: "pointer" }} onClick={logout} />
