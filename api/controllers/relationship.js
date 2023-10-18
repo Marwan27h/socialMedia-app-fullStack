@@ -21,6 +21,7 @@ export const addRelationships = (req, res) => {
 
     db.query(q, [values], (err, data) => {
         if (err) {
+            console.log("Error adding relationship:", err) // Log the error
             return res.status(500).json({ message: "Internal Server Error" })
         }
 
