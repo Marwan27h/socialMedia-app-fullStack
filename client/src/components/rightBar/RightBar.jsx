@@ -29,7 +29,7 @@ const RightBar = () => {
         ["friends"],
         () => makeRequest.get("/friends").then((res) => res.data),
         {
-            refetchInterval: 30000,
+            refetchInterval: 1000,
         }
     )
 

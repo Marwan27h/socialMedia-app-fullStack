@@ -161,14 +161,14 @@
                     gap: 14px;
 
                     span {
-                        font-size: 18px;
+                        font-size: 15px;
                         font-weight: bolder;
 
                         @include mobile {
                             font-size: 16px;
                         }
                         @include tablet {
-                            font-size: 15px;
+                            font-size: 14px;
                         }
                     }
 

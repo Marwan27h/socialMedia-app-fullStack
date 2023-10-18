@@ -1,27 +1,134 @@
 @import "../../style.scss";
 
-.posts{
+.posts {
     @include themify($themes) {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
 
-   @include mobile {
-       gap: 25px;
-    }
-   
+        @include mobile {
+            gap: 25px;
+        }
 
-    .loading-container,
-        .no-posts-container
-        {
-            padding: 20px 60px;
+        .loading-container,
+        .no-posts-container {
             background-color: themed("bgSoft");
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Align to the top */
             justify-content: center;
+
             height: 100vh;
             color: themed("textColorSoft");
             font-size: 24px;
+            @include mobile {
+                gap: 5px;
+                font-size: 4px;
+            }
+            .item {
+                -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+                -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+                box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+                padding: 14px;
+                margin-bottom: 20px;
+                background-color: themed("bg");
+                border-radius: 8px;
+                border-bottom: 1px solid themed("border");
+                border-left: 1px solid themed("border");
+                width: 70%;
+
+                p {
+                    color: themed("textColorSoft");
+                }
+
+                span {
+                    color: gray;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 10px;
+                }
+                hr {
+                    margin: 10px 0px;
+                    border: none;
+                    height: 0.5px;
+                    background-color: themed("border");
+                }
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 20px 0px;
+
+                    .userInfo {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        position: relative;
+
+                        img {
+                            width: 35px;
+                            height: 35px;
+                            border-radius: 50%;
+
+                            object-fit: cover;
+                        }
+
+                        .online {
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background-color: limegreen;
+                            position: absolute;
+                            top: 0;
+                            left: 30px;
+                        }
+                        span {
+                            font-size: 50px;
+                            font-weight: bold;
+                        }
+
+                        p {
+                            color: themed("textColorSoft");
+                            font-size: 13px;
+                            flex-direction: column;
+                            span {
+                                font-size: 10px;
+                                font-weight: bolder;
+                            }
+                        }
+
+                        span {
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: themed("textColor");
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+
+                        button {
+                            border: none;
+                            padding: 2px 4px;
+                            color: white;
+                            font-weight: 600;
+                            border-radius: 5px;
+                            cursor: pointer;
+
+                            &:first-child {
+                                background-color: #5271ff;
+                            }
+
+                            &:last-child {
+                                background-color: rgb(191, 40, 40);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

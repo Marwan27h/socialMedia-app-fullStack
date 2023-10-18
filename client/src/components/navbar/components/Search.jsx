@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined"
 import { Link } from "react-router-dom"
 
@@ -11,10 +11,14 @@ const Search = ({
     error,
     data,
     searchContainerRef,
-    inputRef, // Add inputRef prop
-    userFoundRef, // Add userFoundRef prop
+    inputRef,
+    userFoundRef,
 }) => (
-    <div className="search" ref={searchContainerRef}>
+    <div
+        className="search"
+        ref={searchContainerRef}
+        style={{ position: "relative" }}
+    >
         <SearchOutlinedIcon onClick={handleSearch} />
         <input
             type="text"
@@ -25,19 +29,25 @@ const Search = ({
             ref={inputRef} // Use the inputRef prop
         />
 
-        {isLoading && <p>Loading...</p>}
-
-        {error && <p>NO users found!!</p>}
         {data && typeof data === "object" && searchQuery && (
-            <ul>
+            <ul
+                style={{
+                    position: "absolute",
+                    top: 26,
+                    left: 10,
+                    width: "100%",
+                    padding: 0,
+                    margin: 0,
+                }}
+            >
                 <li key={data.id} ref={userFoundRef}>
-                    {" "}
-                    {/* Use the userFoundRef prop */}
                     <Link
                         to={`/profile/${data.id}`}
                         style={{
                             textDecoration: "none",
                             color: "inherit",
+                            display: "block",
+                            padding: "8px",
                         }}
                     >
                         {data.username}
@@ -45,6 +55,20 @@ const Search = ({
                 </li>
             </ul>
         )}
+
+        <ul
+            style={{
+                position: "absolute",
+                top: 35,
+                left: 10,
+                width: "100%",
+                padding: 0,
+                margin: 0,
+            }}
+        >
+            {isLoading && <li>Loading...</li>}
+            {error && <li>No users found!!</li>}
+        </ul>
     </div>
 )
 
