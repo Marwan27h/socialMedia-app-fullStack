@@ -80,7 +80,7 @@ const ProfileUserInfo = ({
                     </button>
                 )}
             </div>
-            <div className="right">
+            <div className="profile-right">
                 <div className="item">
                     <EngineeringIcon fontSize="large" />{" "}
                     <span>{data.work || "None"}</span>
@@ -99,7 +99,7 @@ const ProfileUserInfo = ({
                         onClick={handleGalleryClick}
                     />
                     {showSlideshow && (
-                        <div className="slideshow">
+                        <div className="slideshow-profile">
                             <CloseIcon
                                 className="closeIconProfile"
                                 fontSize="large"

@@ -135,10 +135,13 @@
                     font-weight: bold;
                     cursor: pointer;
                     @include mobile {
-                        width: 30%;
+                        width: 40%;
                         padding: 3px 4px;
                         font-weight: 500;
                     }
+                }
+                 p{
+                    font-size: 14px;
                 }
             }
         }

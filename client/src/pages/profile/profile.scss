@@ -55,7 +55,7 @@
             @include tablet {
                 padding: 10px;
             }
-            .slideshow {
+            .slideshow-profile {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -209,7 +209,7 @@
                 }
             }
 
-            .right {
+            .profile-right {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
@@ -218,7 +218,7 @@
                 @include mobile {
                     flex-direction: row-reverse;
                     align-items: flex-start;
-                    justify-content: space-between;
+                    justify-content: center;
                 }
                 .item {
                     display: flex;
