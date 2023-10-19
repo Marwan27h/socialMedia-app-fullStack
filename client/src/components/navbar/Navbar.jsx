@@ -1,6 +1,6 @@
 import "./navbar.scss"
 import { useNavigate } from "react-router-dom"
-import { React, useContext, useState, useRef, useCallback, useEffect } from "react"
+import { React, useContext, useState, useRef, useCallback } from "react"
 import { DarkModeContext } from "../../context/darkModeContext"
 import { AuthContext } from "../../context/authContext"
 import { useQuery } from "@tanstack/react-query"
@@ -17,12 +17,8 @@ const Navbar = () => {
     const userFoundRef = useRef(null)
     const inputRef = useRef(null)
     const navigate = useNavigate()
-    const [notifications, setNotifications] = useState([])
-    const [showNotificationsDropdown, setShowNotificationsDropdown] =
-        useState(false)
-    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
 
-    useState(false)
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
 
     const { isLoading, error, data, setData } = useQuery(
         ["users", searchQuery],
@@ -60,38 +56,6 @@ const Navbar = () => {
         }
     }
 
-    const { data: notificationsData, refetch: refetchNotifications } = useQuery(
-        ["notifications", currentUser.id],
-        async () => {
-            try {
-                const response = await makeRequest.get(
-                    `/notifications?userId=${currentUser.id}`
-                )
-                return response.data
-            } catch (error) {
-                throw new Error("Failed to fetch notifications")
-            }
-        },
-        {
-            refetchInterval: 60000,
-        }
-    )
-
-    useEffect(() => {
-        if (notificationsData) {
-            setNotifications(notificationsData)
-        }
-    }, [notificationsData])
-
-    const handleNotificationsClick = async () => {
-        try {
-            await refetchNotifications()
-            setShowNotificationsDropdown((prevState) => !prevState)
-        } catch (error) {
-            console.error("Failed to fetch notifications:", error)
-        }
-    }
-
     const handleDeleteUser = async () => {
         try {
             const response = await makeRequest.delete(
@@ -105,7 +69,7 @@ const Navbar = () => {
                 )
                 localStorage.removeItem("userData")
                 navigate("/login")
-            } 
+            }
         } catch (error) {
             throw error
         }
@@ -114,13 +78,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="left">
-                <Logo
-                    darkMode={darkMode}
-                    toggle={toggle}
-                    handleNotificationsClick={handleNotificationsClick}
-                    notifications={notifications}
-                    showNotificationsDropdown={showNotificationsDropdown}
-                />
+                <Logo darkMode={darkMode} toggle={toggle} />
 
                 <Search
                     searchQuery={searchQuery}

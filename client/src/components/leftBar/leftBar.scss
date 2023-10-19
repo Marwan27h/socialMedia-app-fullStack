@@ -33,6 +33,9 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                .shortcuts{
+                    margin-top:20px ;
+                }
             }
 
             span {
