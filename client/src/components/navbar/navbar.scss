@@ -25,6 +25,33 @@
             @include tablet {
                 gap: 20px;
             }
+                 .notifications-icon-mobile {
+                display: none;
+
+                @include mobile {
+                    display: block;
+                }
+            }
+
+            .notifications-container {
+                position: absolute;
+                color: themed("textColor");
+                top: 100%;
+                left: 0;
+                width: 275px;
+                height: 270px;
+                overflow-y: auto;
+
+                border: none;
+                margin-top: 0px;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                @include mobile {
+                    width: 205px;
+                    height: 170px;
+                }
+            }
 
             @include mobile {
                 gap: 5px;
