@@ -16,7 +16,7 @@ const LogoNav = ({
 }) => (
     <>
         <Link to="/" style={{ textDecoration: "none", cursor: "pointer" }}>
-            <span>InterActify</span>
+            <span className="logo-span">InterActify</span>
         </Link>
 
         <NotificationsIcon
