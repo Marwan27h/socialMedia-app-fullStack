@@ -31,26 +31,6 @@
                 font-size: 4px;
             }
 
-            .notifications-container {
-                position: absolute;
-                color: themed("textColor");
-                top: 100%;
-                left: 0;
-                width: 275px;
-                height: 270px;
-                overflow-y: auto;
-
-                border: none;
-                margin-top: 0px;
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-                @include mobile {
-                    width: 200px;
-                    height: 140px;
-                }
-            }
-
             .logo-span {
                 font-weight: bold;
                 font-size: 20px;

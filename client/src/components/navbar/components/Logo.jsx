@@ -4,15 +4,14 @@ import NotificationsIcon from "@mui/icons-material/Notifications"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined"
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined"
-import NotificationsDropdown from "./NotificationsDropdown"
+
 
 const LogoNav = ({
     darkMode,
     toggle,
     handleSearch,
     handleNotificationsClick,
-    showNotificationsDropdown,
-    notifications,
+
 }) => (
     <>
         <Link to="/" style={{ textDecoration: "none", cursor: "pointer" }}>
@@ -21,14 +20,10 @@ const LogoNav = ({
 
         <NotificationsIcon
             style={{ cursor: "pointer" }}
-            onClick={handleNotificationsClick}
+            
         />
 
-        <div className="notifications-container">
-            {showNotificationsDropdown && (
-                <NotificationsDropdown notifications={notifications} />
-            )}
-        </div>
+     
 
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <HomeOutlinedIcon />

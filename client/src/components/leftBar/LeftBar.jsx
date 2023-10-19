@@ -3,13 +3,8 @@ import React, { useContext, useState } from "react"
 import { AuthContext } from "../../context/authContext"
 import { Link, useNavigate } from "react-router-dom"
 import { makeRequest } from "../../axios"
-import Friends from "../../assets/1.png"
-import Groups from "../../assets/2.png"
-import Market from "../../assets/3.png"
 import Watch from "../../assets/4.png"
-import Memories from "../../assets/5.png"
 import Events from "../../assets/6.png"
-import Gaming from "../../assets/7.png"
 import Gallery from "../../assets/8.png"
 import Videos from "../../assets/9.png"
 import Messages from "../../assets/10.png"
@@ -20,6 +15,8 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import CloseIcon from "@mui/icons-material/Close"
 import noPersonImage from "../../assets/noPersonImage.png"
+import NotificationsDropdown from "./components/NotificationsDropdown"
+import { useQuery } from "@tanstack/react-query"
 
 const NavigationItem = ({ icon, label, path, onClick }) => (
     <div
@@ -87,46 +84,39 @@ const LeftBar = () => {
         setIsFollowedOpen(false)
     }
 
+    const { data: notifications } = useQuery(
+        ["notifications", currentUser.id],
+        async () => {
+            try {
+                const response = await makeRequest.get(
+                    `/notifications?userId=${currentUser.id}`
+                )
+                return response.data
+            } catch (error) {
+                throw new Error("Failed to fetch notifications")
+            }
+        },
+        {
+            refetchInterval: 60000,
+        }
+    )
+
     return (
         <div className="leftBar">
             <div className="container">
                 <div className="menu">
+                    <NotificationsDropdown notifications={notifications} />
+                </div>
+
+                <div className="menu">
+                    <span className="shortcuts">Your shortcuts</span>
                     <NavigationItem
                         icon={Fund}
-                        label="Fund"
-                        onClick={handleNavigation}
-                    />
-                    <NavigationItem
-                        icon={Gaming}
-                        label="Gaming"
-                        onClick={handleNavigation}
-                    />
-                    <NavigationItem
-                        icon={Market}
-                        label="Marketplace"
-                        onClick={handleNavigation}
-                    />
-                    <NavigationItem
-                        icon={Watch}
-                        label="Watch"
-                        onClick={handleNavigation}
-                    />
-                    <NavigationItem
-                        icon={Memories}
-                        label="Memories"
-                        onClick={handleNavigation}
-                    />
-                </div>
-                <hr />
-                <div className="menu">
-                    <span>Your shortcuts</span>
-                    <NavigationItem
-                        icon={Friends}
                         label="Friends"
                         onClick={() => openModal("/friends")}
                     />
                     <NavigationItem
-                        icon={Groups}
+                        icon={Watch}
                         label="Followers"
                         onClick={() =>
                             openModal(

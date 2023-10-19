@@ -13,10 +13,15 @@ const NotificationsDropdown = ({ notifications }) => {
     const { currentUser } = useContext(AuthContext)
 
     return (
-        <div className="notifications-dropdown">
-            <div className="item">
-                <ul>
-                    {notifications.map((notification) => (
+        <div className="Notifi-item">
+            <ul>
+                {notifications && notifications.length > 0 && (
+                    <span style={{ marginTop: "20px" }}>
+                        Your Notifications
+                    </span>
+                )}
+                {notifications &&
+                    notifications.map((notification) => (
                         <li key={notification.notificationCreatedAt}>
                             <div className="user">
                                 <div className="userInfo">
@@ -55,8 +60,7 @@ const NotificationsDropdown = ({ notifications }) => {
                             </div>
                         </li>
                     ))}
-                </ul>
-            </div>
+            </ul>
         </div>
     )
 }
