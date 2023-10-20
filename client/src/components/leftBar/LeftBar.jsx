@@ -222,6 +222,11 @@ const LeftBar = () => {
                         fontSize="large"
                         onClick={() => closeModal("friends")}
                     />
+                    <span
+                        style={{ textAlign: "center", paddingBottom: "10px" }}
+                    >
+                        ({followingData.length}) Following you
+                    </span>
                     {followingData.length > 0 &&
                         followingData.map((friend, index) => (
                             <div className="user" key={index}>
@@ -257,6 +262,11 @@ const LeftBar = () => {
                         fontSize="large"
                         onClick={() => closeModal("friends")}
                     />
+                    <span
+                        style={{ textAlign: "center", paddingBottom: "10px" }}
+                    >
+                        ({followedData.length}) Followed you
+                    </span>
                     {followedData.length > 0 &&
                         followedData.map((friend, index) => (
                             <div className="user" key={index}>

@@ -40,7 +40,7 @@ export const getNotificationsLikesComments = (req, res) => {
       )
     ORDER BY
       notificationCreatedAt DESC
-      LIMIT 5;
+      LIMIT 4;
   `
 
     db.query(q, [req.query.userId, req.query.userId], (err, data) => {

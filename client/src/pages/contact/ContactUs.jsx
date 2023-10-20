@@ -60,7 +60,7 @@ const ContactUs = () => {
     return (
         <div className="contact-us">
             <div className="card">
-                <div className="left">
+                <div className="contact-left">
                     <h1>Welcome </h1>
                     <p>to Our Support Center</p>
                     <p>
@@ -75,7 +75,7 @@ const ContactUs = () => {
                         </button>
                     </Link>
                 </div>
-                <div className="right">
+                <div className="contact-right">
                     <h1>Contact Us</h1>
                     <form>
                         <input

@@ -25,7 +25,7 @@
             @include tablet {
                 gap: 20px;
             }
-                 .notifications-icon-mobile {
+            .notifications-icon-mobile {
                 display: none;
 
                 @include mobile {
@@ -38,8 +38,8 @@
                 color: themed("textColor");
                 top: 100%;
                 left: 0;
-                width: 275px;
-                height: 270px;
+                width: 0px;
+                height: 0px;
                 overflow-y: auto;
 
                 border: none;
