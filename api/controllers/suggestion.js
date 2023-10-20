@@ -9,7 +9,7 @@ export const getSuggestion = (req, res) => {
             LEFT JOIN relationships AS r2 ON (u.id = r2.followedUserId AND r2.followerUserId = ?)
             WHERE (r1.followerUserId IS NULL OR r2.followedUserId IS NULL) AND u.id <> ?
             ORDER BY RAND()
-            LIMIT 2;
+            LIMIT 5;
         `
 
     db.query(q, [userInfo.id, userInfo.id, userInfo.id], (err, data) => {

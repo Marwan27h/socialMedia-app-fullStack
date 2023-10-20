@@ -9,7 +9,9 @@ const SuggestionsSection = ({
     ignoredUsers,
     handleFollow,
     handleIgnore,
+    limit,
 }) => {
+    const limitedSuggestions = suggestionsData.slice(0, limit)
     return (
         <div className="item">
             <span>Suggestions For You</span>
@@ -17,7 +19,7 @@ const SuggestionsSection = ({
             {suggestionsData.length === 0 ? (
                 <p>No suggestions available.</p>
             ) : (
-                suggestionsData.map((user) => (
+                limitedSuggestions.map((user) => (
                     <div className="user" key={user.userId}>
                         <div className="userInfo">
                             <img
