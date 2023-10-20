@@ -34,7 +34,16 @@
                 border-radius: 8px;
                 border-bottom: 1px solid themed("border");
                 border-left: 1px solid themed("border");
-                width: 70%;
+                width: 100%;
+                display: none;
+
+                @include tablet {
+                    display: block;
+                }
+
+                @include mobile {
+                    display: block;
+                }
 
                 p {
                     color: themed("textColorSoft");
@@ -58,6 +67,10 @@
                     align-items: center;
                     justify-content: space-between;
                     margin: 20px 0px;
+                    border-bottom: 1px solid themed("border");
+                    padding-bottom: 4px;
+
+              
 
                     .userInfo {
                         display: flex;

@@ -21,14 +21,15 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 0px 20px;
+           
 
             .item {
                 -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
                 -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
                 box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
                 padding: 14px;
-                margin-bottom: 20px;
+                margin-bottom: 14px;
                 background-color: themed("bg");
                 border-radius: 8px;
                 border-bottom: 1px solid themed("border");

@@ -11,11 +11,7 @@ const MemoizedPost = memo(Post)
 const Posts = ({ userId }) => {
     const [ignoredUsers, setIgnoredUsers] = useState([])
     const queryClient = useQueryClient()
-    const {
-        isLoading: isLoadingSuggestions,
-        data: suggestionsData,
-        refetch: refetchSuggestions,
-    } = useQuery(
+    const { data: suggestionsData, refetch: refetchSuggestions } = useQuery(
         ["suggestions"],
         () => makeRequest.get("/suggestions").then((res) => res.data),
         {
@@ -114,12 +110,12 @@ const Posts = ({ userId }) => {
         if (data.length === 0) {
             return (
                 <div className="no-posts-container">
-                   
                     <SuggestionsSection
                         suggestionsData={suggestionsData || []}
                         ignoredUsers={ignoredUsers}
                         handleFollow={handleFollow}
                         handleIgnore={handleIgnore}
+                        limit={5}
                     />
                 </div>
             )

@@ -127,6 +127,7 @@ const RightBar = () => {
                             ignoredUsers={ignoredUsers}
                             handleFollow={handleFollow}
                             handleIgnore={handleIgnore}
+                            limit={2}
                         />
                     )}
                 </div>
