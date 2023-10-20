@@ -7,7 +7,7 @@ const Login = () => {
     return (
         <div className="about">
             <div className="card">
-                <div className="left">
+                <div className="about-left">
                     <h1>Hello World.</h1>
                     <p>
                         Welcome to our dynamic and vibrant social media
@@ -25,7 +25,7 @@ const Login = () => {
                     </Link>
                     <span>&copy; 2023 Developer Marwan Alhatab</span>
                 </div>
-                <div className="right">
+                <div className="about-right">
                     <h1>About Us</h1>
 
                     <p>

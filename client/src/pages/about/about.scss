@@ -26,7 +26,7 @@
             width: 100%;
         }
 
-        .left {
+        .about-left {
             flex: 1;
             background: linear-gradient(
                         rgba(43, 38, 54, 0.5),
@@ -95,7 +95,7 @@
 
         }
 
-          .right {
+          .about-right {
             flex: 1;
          background: linear-gradient(
                 rgba(61, 60, 63, 0.5),
@@ -177,7 +177,7 @@
 
                 @include mobile {
                     width: 50%;
-                    padding: 1px 3px;
+                    padding: 9px 6px;
                     font-weight: 500;
                 }
             }
