@@ -40,10 +40,11 @@
                 }
 
                 span {
-                    color: gray;
+                    color: themed("textColor");
                     text-align: center;
-                    font-weight: bold;
-                    font-size: 10px;
+                    font-weight: 700;
+                    font-size: 12px;
+                    opacity: 0.7;
                 }
                 hr {
                     margin: 10px 0px;

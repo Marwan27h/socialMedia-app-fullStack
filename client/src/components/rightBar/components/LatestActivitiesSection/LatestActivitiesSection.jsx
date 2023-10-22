@@ -2,24 +2,24 @@ import React, { useMemo } from "react"
 import noPersonImage from "../../../../assets/noPersonImage.png"
 import moment from "moment"
 
-  const getActivityText = (activity) => {
-      let text = ""
-      switch (activity.type) {
-          case "post":
-              text = "posted a new post"
-              break
-          case "comment":
-              text = "commented on a post"
-              break
-          case "like":
-              text = "liked a post"
-              break
+const getActivityText = (activity) => {
+    let text = ""
+    switch (activity.type) {
+        case "post":
+            text = "posted a new post"
+            break
+        case "comment":
+            text = "commented on a post"
+            break
+        case "like":
+            text = "liked a post"
+            break
 
-          default:
-              break
-      }
-      return text
-  }
+        default:
+            break
+    }
+    return text
+}
 
 const LatestActivitiesSection = ({
     latestActivities,
@@ -27,8 +27,6 @@ const LatestActivitiesSection = ({
     getFirstName,
 }) => {
     const memoizedGetFirstName = useMemo(() => getFirstName, [getFirstName])
-
-  
 
     return (
         <div className="item">
@@ -61,7 +59,9 @@ const LatestActivitiesSection = ({
                                 {getActivityText(activity)}
                             </p>
                         </div>
-                        <span>{moment(activity.timestamp).fromNow()}</span>
+                        <span style={{ fontSize: "8px" }}>
+                            {moment(activity.timestamp).fromNow()}
+                        </span>
                     </div>
                 ))
             )}
