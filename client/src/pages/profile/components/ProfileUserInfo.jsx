@@ -34,7 +34,7 @@ const ProfileUserInfo = ({
 }) => {
     return (
         <div className="uInfo">
-            <div className="left">
+            <div className="profile-left">
                 <div className="item">
                     <Diversity1SharpIcon fontSize="large" />
                     <span>
@@ -98,6 +98,7 @@ const ProfileUserInfo = ({
                         fontSize="large"
                         onClick={handleGalleryClick}
                     />
+                    <span>Gallery</span>
                     {showSlideshow && (
                         <div className="slideshow-profile">
                             <CloseIcon

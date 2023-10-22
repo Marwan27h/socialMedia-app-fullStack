@@ -39,12 +39,7 @@
                 border: 4px solid themed("border");
             }
         }
-        .center {
-            margin-top: 20px;
-            span {
-                font-size: 15px;
-            }
-        }
+     
         .profileContainer {
             padding: 20px 20px;
 
@@ -117,16 +112,16 @@
 
                 @include mobile {
                     flex-direction: column;
-                    height: 20vh;
+                    height: 22vh;
                     padding: 15px;
                     margin-top: 70px;
-                    gap: 15px;
+                    gap: 10px;
                     margin-bottom: 3px;
                 }
                 @include tablet {
                 }
 
-                .left {
+                .profile-left {
                     flex: 1;
                     display: flex;
                     flex-direction: column;
@@ -159,6 +154,7 @@
                     flex-direction: column;
                     align-items: center;
                     gap: 14px;
+                    margin-top: 15px;
 
                     span {
                         font-size: 15px;
@@ -207,37 +203,36 @@
                         padding: 3px 6px;
                     }
                 }
-            }
 
-            .profile-right {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-
-                gap: 14px;
-                @include mobile {
-                    flex-direction: row-reverse;
-                    align-items: flex-start;
-                    justify-content: center;
-                }
-                .item {
+                .profile-right {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
+                   gap: 14px;
                     @include mobile {
-                        flex-direction: row;
+                        flex-direction: row-reverse;
+                        align-items: flex-start;
+                        justify-content: center;
+                    }
+                    .item {
                         display: flex;
-                    }
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
 
-                    span {
-                        font-size: 11px;
-                        font-weight: 600;
-                        color: gray;
+                        span {
+                            font-size: 11px;
+                            font-weight: 600;
+                            color: gray;
+                            text-align: center;
+                              @include mobile {
+                          font-size: 10px;
                     }
+                        }
 
-                    .closeIcon {
-                        color: white;
+                        .closeIcon {
+                            color: white;
+                        }
                     }
                 }
             }
