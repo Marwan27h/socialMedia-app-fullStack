@@ -23,6 +23,10 @@
         overflow: hidden;
         flex-direction: row-reverse;
 
+          @include tablet {
+                    width: 100%;
+                }
+
         @include mobile {
             width: 100%;
         }
@@ -45,16 +49,16 @@
 
             h1 {
                 font-size: 60px;
-                line-height: 50px;
 
                 @include mobile {
                     font-size: 30px;
-                    line-height: 80px;
+                    margin-top: 40px;
                 }
             }
 
             p {
                 font-weight: 500;
+
                 @include mobile {
                     font-weight: 400;
                     font-size: 12px;
@@ -98,19 +102,24 @@
                 font-size: 30px;
 
                 @include mobile {
-                    font-size: 20px;
+                    font-size: 25px;
+                    width: 80%;
+                    margin-right: 40px;
                 }
             }
 
             form {
                 display: flex;
                 flex-direction: column;
+                justify-content: flex-start;
                 gap: 30px;
+                width: 100%;
 
                 input {
                     color: white;
                     font-weight: bold;
                     border: none;
+
                     background: linear-gradient(
                         rgba(43, 38, 54, 0.5),
                         rgba(39, 11, 96, 0.5)
@@ -140,11 +149,11 @@
                         font-weight: 500;
                     }
                 }
-                .error{
+                .error {
                     font-size: 14px;
                 }
-                .success{
-                     font-size: 14px;
+                .success {
+                    font-size: 14px;
                 }
             }
         }
