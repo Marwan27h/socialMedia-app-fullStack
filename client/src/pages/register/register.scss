@@ -23,9 +23,9 @@
         overflow: hidden;
         flex-direction: row-reverse;
 
-          @include tablet {
-                    width: 100%;
-                }
+        @include tablet {
+            width: 100%;
+        }
 
         @include mobile {
             width: 100%;
@@ -37,14 +37,15 @@
                 rgba(61, 60, 63, 0.5),
                 rgba(39, 11, 96, 0.5)
             );
-            padding: 40px;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             gap: 30px;
             color: lightgray;
             box-shadow: 0 0 10px rgba(1, 20, 0, 0.2);
             @include mobile {
-                padding: 10px 5px;
+                padding: 110px 5px;
+                   gap: 10px;
             }
 
             h1 {
@@ -52,7 +53,7 @@
 
                 @include mobile {
                     font-size: 30px;
-                    margin-top: 40px;
+                   
                 }
             }
 
@@ -67,6 +68,9 @@
 
             span {
                 font-size: 14px;
+                @include mobile {
+                    font-size: 12px;
+                }
             }
 
             button {
@@ -102,7 +106,7 @@
                 font-size: 30px;
 
                 @include mobile {
-                    font-size: 25px;
+                    font-size: 30px;
                     width: 80%;
                     margin-right: 40px;
                 }
