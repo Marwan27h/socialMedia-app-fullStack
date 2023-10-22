@@ -16,9 +16,7 @@ const NotificationsDropdown = ({ notifications }) => {
         <div className="Notifi-item">
             <ul>
                 {notifications && notifications.length > 0 && (
-                    <span style={{ marginTop: "20px" }}>
-                        Your Notifications
-                    </span>
+                    <span className="span-title">Your Notifications</span>
                 )}
                 {notifications &&
                     notifications.map((notification) => (

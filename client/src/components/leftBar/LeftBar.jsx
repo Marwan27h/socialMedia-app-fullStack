@@ -145,7 +145,7 @@ const LeftBar = () => {
                 <hr />
 
                 <div className="menu">
-                    <span>Others</span>
+                    <span className="span-title">Others</span>
                     <NavigationItem
                         icon={Events}
                         label="Events"
@@ -223,9 +223,12 @@ const LeftBar = () => {
                         onClick={() => closeModal("friends")}
                     />
                     <span
-                        style={{ textAlign: "center", paddingBottom: "10px" }}
+                        style={{
+                            borderBottom: "1px solid gray",
+                            paddingBottom: "10px",
+                        }}
                     >
-                        ({followingData.length}) Following you
+                        ({followingData.length}) Users you following
                     </span>
                     {followingData.length > 0 &&
                         followingData.map((friend, index) => (
@@ -263,9 +266,12 @@ const LeftBar = () => {
                         onClick={() => closeModal("friends")}
                     />
                     <span
-                        style={{ textAlign: "center", paddingBottom: "10px" }}
+                        style={{
+                            borderBottom: "1px solid gray",
+                            paddingBottom: "10px",
+                        }}
                     >
-                        ({followedData.length}) Followed you
+                        ({followedData.length}) Users followed you
                     </span>
                     {followedData.length > 0 &&
                         followedData.map((friend, index) => (
