@@ -1,7 +1,7 @@
 @import "../../style.scss";
 
 .contact-us{
-    padding: 30px 20px;
+    height: 100vh;
      background-color: rgb(51, 44, 44);
     display: flex;
     align-items: center;
@@ -42,9 +42,10 @@
 
              @include tablet {
                 padding: 160px 20px;
+                 gap: 20px;
             }
             @include mobile {
-                padding: 144px 10px;
+                padding: 184px 10px;
             }
 
             h1 {
@@ -79,8 +80,8 @@
                 font-weight: bold;
                 cursor: pointer;
                 @include mobile {
-                    width: 30%;
-                    padding: 3px 4px;
+                   
+                        padding: 4px 7px;
                     font-weight: 500;
                 }
             }
@@ -106,7 +107,7 @@
             h1 {
                 font-size: 30px;
                 @include mobile {
-                    font-size: 20px;
+                    font-size: 25px;
                 }
             }
 
@@ -168,8 +169,8 @@
                     font-weight: bold;
                     cursor: pointer;
                     @include mobile {
-                        width: 100%;
-                        padding: 1px 3px;
+                        width: 50%;
+                             padding: 5px 8px;
                         font-weight: 500;
                     }
                 }
