@@ -59,7 +59,7 @@ const LatestActivitiesSection = ({
                                 {getActivityText(activity)}
                             </p>
                         </div>
-                        <span style={{ fontSize: "8px" }}>
+                        <span className="avtivity-span">
                             {moment(activity.timestamp).fromNow()}
                         </span>
                     </div>

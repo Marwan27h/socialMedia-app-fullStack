@@ -22,7 +22,6 @@
 
         .container {
             padding: 0px 20px;
-           
 
             .item {
                 -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
@@ -127,6 +126,12 @@
                             }
                         }
                     }
+                }
+                .avtivity-span {
+                    font-size: 10px;
+                    font-weight: 700;
+                    color: themed("textColorSoft");
+                    opacity: 0.7;
                 }
             }
         }
