@@ -151,9 +151,9 @@ const Share = () => {
                             <span>Add Place</span>
                         </div>
                         {showPlaceInput && (
-                            <input
+                            <input className="place-input"
                                 type="text"
-                                placeholder="Add place"
+                                placeholder="Write here"
                                 value={place}
                                 onChange={(e) =>
                                     setPlace(e.target.value.toUpperCase())

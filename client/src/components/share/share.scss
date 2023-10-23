@@ -70,9 +70,7 @@
                     gap: 20px;
 
                     @include mobile {
-                        gap: 10px;
-
-                        font-size: 10px;
+                        gap: 5px;
                     }
 
                     .item {
@@ -83,8 +81,6 @@
 
                         @include mobile {
                             gap: 5px;
-
-                            font-size: 10px;
                         }
 
                         img {
@@ -98,28 +94,39 @@
                             font-size: 12px;
                             color: gray;
                             @include mobile {
+                                font-size: 7px;
+                            }
+                        }
+
+                        select {
+                            background-color: inherit;
+                            border: none;
+                            border-bottom: 1px solid themed("border");
+                            color: themed("textColor");
+                            width: 44%;
+                            font-size: 10px;
+                            padding: 3px 5px;
+
+                            @include mobile {
                                 font-size: 8px;
+                                width: 38%;
+                                padding: 0px;
                             }
                         }
                     }
-
-                    input {
+                    .place-input {
                         background-color: inherit;
                         border: none;
                         border-bottom: 1px solid themed("border");
                         color: themed("textColor");
                         width: 20%;
                         padding: 3px 5px;
-                    }
-
-                    select {
-                        background-color: inherit;
-                        border: none;
-                        border-bottom: 1px solid themed("border");
-                        color: themed("textColor");
-                        width: 44%;
-                        font-size: 10px;
-                        padding: 3px 5px;
+                        @include mobile {
+                            font-size: 8px;
+                            width: 24%;
+                            padding: 0px;
+                            margin-right: 10px;
+                        }
                     }
                 }
                 .right {
