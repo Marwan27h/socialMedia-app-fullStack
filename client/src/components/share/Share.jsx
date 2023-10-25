@@ -93,7 +93,6 @@ const Share = () => {
         }
     )
 
-
     return (
         <div className="share">
             <div className="container">
@@ -151,12 +150,18 @@ const Share = () => {
                             <span>Add Place</span>
                         </div>
                         {showPlaceInput && (
-                            <input className="place-input"
+                            <input
+                                className="place-input"
                                 type="text"
                                 placeholder="Write here"
                                 value={place}
                                 onChange={(e) =>
-                                    setPlace(e.target.value.toUpperCase())
+                                    setPlace(
+                                        e.target.value.charAt(0).toUpperCase() +
+                                            e.target.value
+                                                .slice(1)
+                                                .toLowerCase()
+                                    )
                                 }
                             />
                         )}
