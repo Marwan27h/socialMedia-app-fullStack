@@ -1,8 +1,7 @@
 @import "../../style.scss";
 
-.contact-us{
+.contact-us {
     height: 100vh;
-     background-color: rgb(51, 44, 44);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,9 +39,9 @@
             color: lightgray;
             box-shadow: 0 0 10px rgba(1, 20, 0, 0.2);
 
-             @include tablet {
+            @include tablet {
                 padding: 160px 20px;
-                 gap: 20px;
+                gap: 20px;
             }
             @include mobile {
                 padding: 184px 10px;
@@ -80,8 +79,7 @@
                 font-weight: bold;
                 cursor: pointer;
                 @include mobile {
-                   
-                        padding: 4px 7px;
+                    padding: 4px 7px;
                     font-weight: 500;
                 }
             }
@@ -97,11 +95,10 @@
             color: lightgray;
             @include mobile {
                 padding: 5px;
-                 gap: 10px;
+                gap: 10px;
             }
-              @include tablet{
+            @include tablet {
                 padding: 20px;
-                
             }
 
             h1 {
@@ -116,9 +113,9 @@
                 flex-direction: column;
                 gap: 30px;
 
-                   @include mobile {
-                       gap: 15px;
-                    }
+                @include mobile {
+                    gap: 15px;
+                }
 
                 input {
                     color: white;
@@ -129,7 +126,7 @@
                         rgba(39, 11, 96, 0.5)
                     );
                     border-bottom: 1px solid lightgray;
-                       padding: 8px 4px;
+                    padding: 8px 4px;
                     border-radius: 5px;
 
                     @include mobile {
@@ -138,30 +135,30 @@
                     }
                 }
 
-                  textarea {
+                textarea {
                     color: white;
                     font-weight: bold;
                     border: none;
                     height: 80px;
-                    
+
                     background: linear-gradient(
                         rgba(43, 38, 54, 0.5),
                         rgba(39, 11, 96, 0.5)
                     );
                     border-bottom: 1px solid lightgray;
-                       padding: 8px 4px;
+                    padding: 8px 4px;
                     border-radius: 5px;
 
                     @include mobile {
                         padding: 6px 5px;
                         font-size: 10px;
-                           height: 40px;
+                        height: 40px;
                     }
                 }
 
                 button {
-                   width: 50%;
-                padding: 10px 4px;
+                    width: 50%;
+                    padding: 10px 4px;
                     border-radius: 4px;
                     border: none;
                     background-color: #938eef;
@@ -170,7 +167,7 @@
                     cursor: pointer;
                     @include mobile {
                         width: 50%;
-                             padding: 5px 8px;
+                        padding: 5px 8px;
                         font-weight: 500;
                     }
                 }

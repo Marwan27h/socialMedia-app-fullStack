@@ -1,11 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import "./register.scss"
 import { makeRequest } from "../../axios"
+import { DarkModeContext } from "../../context/darkModeContext"
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 const Register = () => {
+    const { darkMode } = useContext(DarkModeContext)
     const [inputs, setInputs] = useState({
         username: "",
         email: "",
@@ -47,7 +49,12 @@ const Register = () => {
     }
 
     return (
-        <div className="register">
+        <div
+            style={{
+                backgroundColor: darkMode ? "#333" : "#f6f3f3",
+            }}
+            className="register"
+        >
             <div className="card">
                 <div className="left">
                     <h1>InterActify.</h1>

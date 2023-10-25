@@ -1,10 +1,11 @@
-import { React, useState } from "react"
+import { React, useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import "./contactUs.scss"
 import { makeRequest } from "../../axios"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
-
+import { DarkModeContext } from "../../context/darkModeContext"
 const ContactUs = () => {
+       const { darkMode } = useContext(DarkModeContext)
     const [inputs, setInputs] = useState({
         username: "",
         email: "",
@@ -58,7 +59,12 @@ const ContactUs = () => {
     }
 
     return (
-        <div className="contact-us">
+        <div
+            style={{
+                backgroundColor: darkMode ? "#333" : "#f6f3f3",
+            }}
+            className="contact-us"
+        >
             <div className="card">
                 <div className="contact-left">
                     <h1>Welcome </h1>
