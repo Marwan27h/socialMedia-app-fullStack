@@ -74,13 +74,12 @@
                         padding: 1px 4px;
                         top: 12px;
                         right: 16px;
-                         background-color: rgb(191, 40, 40);
+                        background-color: rgb(191, 40, 40);
 
                         @include mobile {
                             margin-bottom: 10px;
                             top: 8px;
                             right: 9px;
-                            
                         }
                     }
                 }
@@ -88,19 +87,26 @@
                 .userInfo {
                     display: flex;
                     gap: 10px;
+                    @include mobile {
+                        gap: 6px;
+                    }
 
                     img {
                         width: 40px;
                         height: 40px;
                         border-radius: 50%;
                         object-fit: cover;
+                        @include mobile {
+                            width: 35px;
+                            height: 35px;
+                        }
                     }
 
                     .details {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        gap: 6px;
+                        gap: 4px;
 
                         @include mobile {
                             font-size: 12px;
@@ -110,15 +116,14 @@
                             font-weight: 500;
                         }
 
-                          .date {
-                            font-size: 10px;
-                            font-weight: 700;
-                            color: themed("textColorSoft");
-                            opacity: 0.7;
-                            margin-left: 4px;
+                        .date {
+                                        font-size: 10px;
+                    font-weight: 500;
+                    color: themed("textColorSoft");
+                    opacity: 0.7;
+                    margin-left: 3px;
                             @include mobile {
-                                font-size: 7px;
-                                text-align: self;
+                                font-size: 8px;
                             }
                         }
                     }
@@ -175,7 +180,7 @@
 
                 p {
                     @include mobile {
-                        font-size: 12px;
+                        font-size: 11px;
                     }
                 }
             }
@@ -185,9 +190,9 @@
                 display: flex;
                 align-items: center;
                 gap: 14px;
-               
+
                 @include tablet {
-                    gap: 10px;
+                    gap: 6px;
                 }
 
                 @include mobile {
@@ -209,6 +214,7 @@
                         0,
                         0.5
                     ); /* Semi-transparent overlay */
+                    z-index: 1000;
                 }
 
                 .share-confirmation-box {
@@ -261,7 +267,7 @@
                     }
                     span {
                         @include mobile {
-                            font-size: 7.5px;
+                            font-size: 8px;
                         }
                     }
 
@@ -283,17 +289,17 @@
                     display: flex;
                     align-items: center;
                     @include tablet {
-                        right: 115px;
+                        right: 98px;
                         font-size: 13px;
                     }
                     @include mobile {
-                        padding: 1px 8px;
-                        right: 70px;
+                        padding: 0px 8px;
+                        right: 64px;
                         font-size: 8px;
                     }
                     span {
                         @include mobile {
-                            font-size: 7.5px;
+                            font-size: 8px;
                         }
                     }
                     .tagIcon {
@@ -336,10 +342,7 @@
                         gap: 1px;
                     }
                 }
-                
-              
             }
-            
         }
     }
 }

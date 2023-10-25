@@ -136,7 +136,7 @@
             background-color: themed("bg");
             display: flex;
             flex-direction: column;
-            height: 120vh;
+            min-height: 115vh;
         }
 
         .fullscreen-friends-modal img {

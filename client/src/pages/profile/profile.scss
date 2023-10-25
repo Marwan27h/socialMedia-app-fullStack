@@ -3,7 +3,7 @@
 .profile {
     @include themify($themes) {
         background-color: themed("bgSoft");
-      padding: 10px;
+        padding: 10px;
         .loading-container {
             padding: 20px 60px;
             background-color: themed("bgSoft");

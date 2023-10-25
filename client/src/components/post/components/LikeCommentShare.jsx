@@ -34,6 +34,13 @@ const LikeCommentShare = ({
         setShowConfirmation(false)
         onShare(post.id)
     }
+
+    const getFirstName = (fullName) => {
+        if (fullName) {
+            const parts = fullName.split(" ")
+            return parts[0]
+        }
+    }
     return (
         <div className="info">
             <div className="item">
@@ -75,7 +82,7 @@ const LikeCommentShare = ({
             {post.tag && (
                 <div className="tagItem">
                     <LocalOfferIcon className="tagIcon" />
-                    <span> {post.tag}</span>
+                    <span> {getFirstName(post.tag)}</span>
                 </div>
             )}
             {showConfirmation && (
