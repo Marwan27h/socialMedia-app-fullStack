@@ -29,7 +29,7 @@ const RightBar = () => {
         ["friends"],
         () => makeRequest.get("/friends").then((res) => res.data),
         {
-            refetchInterval: 1000,
+            refetchInterval: 20000,
         }
     )
 
@@ -41,7 +41,7 @@ const RightBar = () => {
         ["suggestions"],
         () => makeRequest.get("/suggestions").then((res) => res.data),
         {
-            refetchInterval: 30000,
+            refetchInterval: 60000,
         }
     )
 

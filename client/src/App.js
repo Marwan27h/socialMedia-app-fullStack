@@ -36,7 +36,14 @@ const Layout = () => {
                 <Navbar />
                 <div style={{ display: "flex" }}>
                     <LeftBar />
-                    <div style={{ flex: 6.7 }}>
+                    <div
+                        className={`theme-${darkMode ? "dark" : "light"}`}
+                        style={{
+                            flex: 6.7,
+                            backgroundColor: darkMode ? "#333" : "#f6f3f3",
+                            minHeight: "100vh",
+                        }}
+                    >
                         {location.pathname === "/event" ? (
                             <ShareEvent />
                         ) : (
@@ -47,7 +54,7 @@ const Layout = () => {
                 </div>
             </div>
         </QueryClientProvider>
-    );
+    )
 };
 
     const ProtectedRoute = ({ children }) => {

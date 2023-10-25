@@ -1,9 +1,11 @@
 import { React, useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/authContext"
+import { DarkModeContext } from "../../context/darkModeContext"
 import "./login.scss"
 
 const Login = () => {
+    const { darkMode } = useContext(DarkModeContext)
     const [inputs, setInputs] = useState({
         username: "",
         password: "",
@@ -32,7 +34,12 @@ const Login = () => {
         }
     }
     return (
-        <div className="login">
+        <div
+            style={{
+                backgroundColor: darkMode ? "#333" : "#f6f3f3",
+            }}
+            className="login"
+        >
             <div className="card">
                 <div className="left">
                     <h1>Hello World.</h1>

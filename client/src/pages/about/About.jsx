@@ -1,11 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import "./about.scss"
 import { Link } from "react-router-dom"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
-
+import {DarkModeContext} from "../../context/darkModeContext"
 const Login = () => {
+    const { darkMode } = useContext(DarkModeContext)
     return (
-        <div className="about">
+        <div
+            style={{
+                backgroundColor: darkMode ? "#333" : "#f6f3f3",
+            }}
+            className="about"
+        >
             <div className="card">
                 <div className="about-left">
                     <h1>Hello World.</h1>
@@ -21,7 +27,9 @@ const Login = () => {
 
                     <span>Go to home page?</span>
                     <Link to="/">
-                        <button><HomeOutlinedIcon/></button>
+                        <button>
+                            <HomeOutlinedIcon />
+                        </button>
                     </Link>
                     <span>&copy; 2023 Developer Marwan Alhatab</span>
                 </div>
