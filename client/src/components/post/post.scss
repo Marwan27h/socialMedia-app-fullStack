@@ -117,11 +117,11 @@
                         }
 
                         .date {
-                                        font-size: 10px;
-                    font-weight: 500;
-                    color: themed("textColorSoft");
-                    opacity: 0.7;
-                    margin-left: 3px;
+                            font-size: 10px;
+                            font-weight: 500;
+                            color: themed("textColorSoft");
+                            opacity: 0.7;
+                            margin-left: 3px;
                             @include mobile {
                                 font-size: 8px;
                             }
@@ -255,11 +255,12 @@
                     bottom: 0;
                     right: 0;
                     font-size: 11px;
-
+                    padding: 0px 8px;
                     display: flex;
                     align-items: center;
                     @include tablet {
                         font-size: 13px;
+                        padding: 0px 8px;
                     }
                     @include mobile {
                         padding: 0px 8px;
@@ -283,13 +284,14 @@
                 .tagItem {
                     position: absolute;
                     bottom: 0;
-                    right: 115px;
+                    right: 95px;
                     font-size: 12px;
+                    padding: 0px 8px;
 
                     display: flex;
                     align-items: center;
                     @include tablet {
-                        right: 98px;
+                        right: 97px;
                         font-size: 13px;
                     }
                     @include mobile {
