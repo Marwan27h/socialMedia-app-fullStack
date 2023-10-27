@@ -15,7 +15,7 @@ const ProfileImages = ({ data }) => {
                     setIsCoverLoaded(true)
                 }
             } else {
-                setIsCoverLoaded(true) // No cover image, mark it as loaded
+                setIsCoverLoaded(true) 
             }
 
             if (data.profilePic) {
@@ -25,7 +25,7 @@ const ProfileImages = ({ data }) => {
                     setIsProfilePicLoaded(true)
                 }
             } else {
-                setIsProfilePicLoaded(true) // No profile picture, mark it as loaded
+                setIsProfilePicLoaded(true) 
             }
         }
     }, [data])
